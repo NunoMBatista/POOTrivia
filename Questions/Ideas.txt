@@ -39,7 +39,6 @@ Science:
     - Bipartite graph
     - Euclidean graph
     - Bi-linked graph 
-    
 
 Arts:
   Who played Jules Winnfield in Pulp Fiction?
@@ -47,6 +46,12 @@ Arts:
     - John Travolta
     - Lebron James
     - Will Smith
+
+  Who has the best haircut in the Department of Informatics Engineering for the University of Coimbra?
+    - Joca
+    - Joca
+    - Joca 
+    - Joca
 
   In the Big Bang Theory, who has a master's degree from MIT?
     - Howard Wolowitz (Correct)
