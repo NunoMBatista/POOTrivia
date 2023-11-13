@@ -48,6 +48,12 @@ Arts:
     - Lebron James
     - Will Smith
 
+  In the Big Bang Theory, who has a master's degree from MIT?
+    - Howard Wolowitz (Correct)
+    - Sheldon Cooper
+    - Rajesh Koothrapali
+    - Leonard Hofstadter 
+
 Sports/Football:
   Which one of these players have been nicknamed "A Pantera Negra"?
     - Eusébio da Silva Ferreira (Correct)
