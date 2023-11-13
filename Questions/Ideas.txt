@@ -1,0 +1,56 @@
+Science:
+  Why did Richard P. Feynman win a nobel prize?
+    - The path integral formulation of quantum mechanics
+    - The parton model
+    - The theory of quantum eletrodynamics (Correct)
+    - The integration trick 
+
+  Which one of these scientists where born on Pi Day?
+    - Marie Curie 
+    - Albert Einstein (Correct)
+    - João Gomes Trancoso Rosa
+    - Roger Penrose
+
+  Which one of these were not invented by Charles Babbage?
+    - The first digital computer
+    - The difference engine
+    - The cowcatcher for locomotives (Correct, it was never built)
+
+  Proposed by James Clerk Maxwell, what's name given by Lord Kelvin to the thought experiment intended to violate the second law of thermodinamics?
+    - Maxwell's demon (Correct)
+    - Maxwell's entropy reduction
+    - Maxwell's chambers
+    - Maxwell's imp
+
+  What thermodynamics concept was brought to information theory by Claude Shannon in his paper "A Mathematical Theory of Comunication"?
+    - Work
+    - Entropy (Correct)
+    - Byte
+    - Channel capacity
+
+  Which one of these algorithms is used to compute the shortest path in a graph from a source node to every other node in a weighted graph with negative weights?
+    - Bellman-Ford algorithm (Correct)
+    - Dijkstra's algorithm
+    - Tarjan's algorithm 
+    - Kosaruju Algorithm
+
+  In graph theory, what is called an undirected graph where exactly one path connects any two vertices?
+    - Tree graph
+    - Bipartite graph
+    - Euclidean graph
+    - Bi-linked graph 
+    
+
+Arts:
+  Who played Jules Winnfield in Pulp Fiction?
+    - Samuel L. Jackson (Correct)
+    - John Travolta
+    - Lebron James
+    - Will Smith
+
+Sports/Football:
+  Which one of these players have been nicknamed "A Pantera Negra"?
+    - Eusébio da Silva Ferreira (Correct)
+    - Képler Laveran de Lima Ferreira 
+    - Ricardo Quaresma
+    - William Carvalho
