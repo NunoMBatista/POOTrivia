@@ -47,7 +47,7 @@ Arts:
     - Lebron James
     - Will Smith
 
-  Who has the best haircut in the Department of Informatics Engineering for the University of Coimbra?
+  Who has the best haircut in the Department of Informatics Engineering of the University of Coimbra?
     - Joca
     - Joca
     - Joca 
