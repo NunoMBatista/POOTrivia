@@ -72,3 +72,10 @@ Sports/Ski:
     - For Your Eyes Only (Correct)
     - Johnny English Reborn
     - Spectre
+
+Sports/Ski:
+  What “B” word refers to the devices that attach a skier’s feet to to the ski?
+    - Bazinga
+    - Bonding
+    - Binding (Correct)
+    - Bounden
