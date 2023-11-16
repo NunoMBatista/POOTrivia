@@ -35,7 +35,7 @@ Science:
     - Kosaruju Algorithm
 
   In graph theory, what is called an undirected graph where exactly one path connects any two vertices?
-    - Tree graph
+    - Tree graph (Correct)
     - Bipartite graph
     - Euclidean graph
     - Bi-linked graph 
@@ -65,3 +65,17 @@ Sports/Football:
     - Képler Laveran de Lima Ferreira 
     - Ricardo Quaresma
     - William Carvalho
+
+Sports/Ski:
+  Roger Moore as James Bond skis through the Italian Alps with a motorcyclist in hot pursuit in what 1981 film?
+    - Skyfall
+    - For Your Eyes Only (Correct)
+    - Johnny English Reborn
+    - Spectre
+
+Sports/Ski:
+  What “B” word refers to the devices that attach a skier’s feet to to the ski?
+    - Bazinga
+    - Bonding
+    - Binding (Correct)
+    - Bounden
