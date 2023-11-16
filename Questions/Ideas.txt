@@ -65,3 +65,10 @@ Sports/Football:
     - Képler Laveran de Lima Ferreira 
     - Ricardo Quaresma
     - William Carvalho
+
+Sports/Ski:
+  Roger Moore as James Bond skis through the Italian Alps with a motorcyclist in hot pursuit in what 1981 film with a four-word title?
+    - Skyfall
+    - For Your Eyes Only (Correct)
+    - Johnny English Reborn
+    - Spectre
