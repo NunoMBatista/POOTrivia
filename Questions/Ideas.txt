@@ -35,7 +35,7 @@ Science:
     - Kosaruju Algorithm
 
   In graph theory, what is called an undirected graph where exactly one path connects any two vertices?
-    - Tree graph
+    - Tree graph (Correct)
     - Bipartite graph
     - Euclidean graph
     - Bi-linked graph 
