@@ -67,7 +67,7 @@ Sports/Football:
     - William Carvalho
 
 Sports/Ski:
-  Roger Moore as James Bond skis through the Italian Alps with a motorcyclist in hot pursuit in what 1981 film with a four-word title?
+  Roger Moore as James Bond skis through the Italian Alps with a motorcyclist in hot pursuit in what 1981 film?
     - Skyfall
     - For Your Eyes Only (Correct)
     - Johnny English Reborn
