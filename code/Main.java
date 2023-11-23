@@ -5,6 +5,8 @@
  */
 
 import java.util.*;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Class to manage the game
@@ -52,5 +54,7 @@ public class Main {
 
         ScienceQuestion sestion = new ScienceQuestion(5, texto, HardList, optionList, false);
         System.out.println(sestion);
+        String [] a = new String[0];
+        GUI.main(a);
     }
 }
