@@ -7,7 +7,6 @@
 /**
  * Class used to manage football player options
  */
-
 public class FootballPlayer{
     /**
      * The name of the player
