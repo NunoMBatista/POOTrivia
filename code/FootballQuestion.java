@@ -35,7 +35,7 @@ public class FootballQuestion extends Question{
     
     /**
      * Translates the football players to options
-     * @param useShirts Defines if the options should have the players' names or shirt numbers
+     * @param useShirts Defines if the options should have the players' names or player's shirt numbers
      */
     protected ArrayList<Option> playerToOption(boolean useShirts){
         ArrayList<Option> updatedArray = new ArrayList<>();
