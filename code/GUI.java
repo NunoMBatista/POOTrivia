@@ -14,6 +14,7 @@ public class GUI {
         JButton button2 = new JButton ("come");
         JButton button3 = new JButton ("pau");
         JButton button4 = new JButton ("LOOOOOOOOOL");
+        //n pode porque é mega vegetarians of the lifes
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(5,2));
