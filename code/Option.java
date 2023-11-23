@@ -30,4 +30,16 @@ public class Option {
      * Constructor for the (empty) Option class
      */
     public Option(){};
+
+    /**
+     * Method used to print the option's text
+     * @return out A string with the option's text and marked if correct
+     */
+    public String toString(){
+        String out = this.optionText;
+        if(this.correct == true){
+            return out + " (Correct)";
+        }
+        return out;
+    }
 }

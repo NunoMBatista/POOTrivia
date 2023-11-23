@@ -30,23 +30,26 @@ public class FootballQuestion extends Question{
         super(scoreValue, questionText, optionArray);
         this.useShirts = useShirts; 
         this.playerArray = playerArray; 
+        this.optionArray = playerToOption(useShirts);
     }
     
     /**
      * Translates the football players to options
      * @param useShirts Defines if the options should have the players' names or shirt numbers
      */
-    protected void playerToOption(boolean useShirts){
-        for(FootballPlayer player: playerArray){
+    protected ArrayList<Option> playerToOption(boolean useShirts){
+        ArrayList<Option> updatedArray = new ArrayList<>();
+        for(FootballPlayer player: this.playerArray){
             Option opt;
             if(useShirts == true){
-                opt = new Option(player.correct, player.shirtNumber);    
+                opt = new Option(player.correct, "Shirt number: " + player.shirtNumber);    
             }
             else{
                 opt = new Option(player.correct, player.name);
             }   
-            this.optionArray.add(opt);
+            updatedArray.add(opt);
         }
+        return updatedArray;
     }
 
     /**

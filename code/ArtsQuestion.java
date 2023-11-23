@@ -14,7 +14,7 @@ public class ArtsQuestion extends Question {
      * Defines how many of the options will be included
      */
     protected int nIncluded;
-    
+
     /**
      * Constructor for the ArtsQuestion class
      * @param scoreValue Defines the value of the question
@@ -23,7 +23,8 @@ public class ArtsQuestion extends Question {
      */
     public ArtsQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, int nIncluded){
         super(scoreValue, questionText, optionArray);
-        this.nIncluded = nIncluded;
+        this.optionArray = limitOptions(nIncluded);
+        Collections.shuffle(this.optionArray);
     }
 
     /**
@@ -48,7 +49,6 @@ public class ArtsQuestion extends Question {
                 break;
             }
         }
-        
         return updatedArray;
     }
 

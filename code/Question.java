@@ -33,6 +33,7 @@ public abstract class Question{
         this.scoreValue = scoreValue;
         this.questionText = questionText;
         this.optionArray = optionArray;
+        
     }
     /**
      * Method used to calculate the question's score value
@@ -46,5 +47,19 @@ public abstract class Question{
     // protected void presentQuestion(){
     //     ...
     // }
+
+    /**
+     * Method used to print the question's text along with it's options
+     * @return out A string with the question's text along with it's options
+     */
+    public String toString(){
+        String out = "Q: " + this.questionText;
+        char counter = 'A'; 
+        for(Option opt: this.optionArray){
+            out += "\n" + counter + " - " + opt;
+            counter += 1;
+        }
+        return out; 
+    }
         
 }
