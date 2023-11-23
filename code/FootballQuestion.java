@@ -11,7 +11,7 @@ import java.util.*;
  */
 public class FootballQuestion extends Question{
     /**
-     * Defines if the question's options should be presented as the player's name or shirt number
+     * Defines if the question's options should be presented as the player's name or player's shirt number
      */
     protected boolean useShirts; 
 
