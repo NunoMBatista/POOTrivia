@@ -23,17 +23,19 @@ public abstract class Question{
      */
     protected ArrayList<Option> optionArray;
 
+    protected String quickFact;
+
     /**
      * Constructor class for the Question class
      * @param scoreValue Contains the value of the question
      * @param questionText Contains the question's text
      * @param optionArray Contains the question's options
      */
-    public Question(int scoreValue, String questionText, ArrayList<Option> optionArray){
+    public Question(int scoreValue, String questionText, ArrayList<Option> optionArray, String quickFact){
         this.scoreValue = scoreValue;
         this.questionText = questionText;
         this.optionArray = optionArray;
-        
+        this.quickFact = quickFact;        
     }
     /**
      * Method used to calculate the question's score value
@@ -59,12 +61,13 @@ public abstract class Question{
      * @return out A string with the question's text along with it's options
      */
     public String toString(){
-        String out = "For " + this.scoreValue + " points! " + this.questionText;
+        String out = "For " + this.scoreValue + " points!\n" + this.questionText;
         char counter = 'A';
         for(Option opt: this.optionArray){
             out += "\n" + counter + " - " + opt;
             counter += 1;
         }
+        out += "\n[" + quickFact + "]";
         return out; 
     }
         

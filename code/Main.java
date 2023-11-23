@@ -32,7 +32,8 @@ public class Main {
             optionArray.add(newOption);
         }
 
-        return new ArtsQuestion(score, questionText, optionArray);
+        String quickFact = optionStr[7];
+        return new ArtsQuestion(score, questionText, optionArray, quickFact);
     }
 
     private static Question scienceParsing(String questionText, String str){
@@ -41,12 +42,12 @@ public class Main {
         String[] optionStr = str.split(";"); 
 
         int score = Integer.parseInt(optionStr[0]); // Read the score value
-        boolean correct = true; // The first normal option is always correct
-
+        
         /*
-         * Read the normal options
-         */
-        for(int i = 1; i < 7; i++){
+        * Read the normal options
+        */
+        boolean correct = true; // The first normal option is always correct
+        for(int i = 1; i < 5; i++){
             String optionText = optionStr[i];
             if(i > 1){
                 correct = false;
@@ -58,16 +59,17 @@ public class Main {
          * Read the easy options
          */
         correct = true;
-        for(int i = 7; i < 13; i++){
+        for(int i = 5; i < 9; i++){
             String easyOptionText = optionStr[i];
-            if(i > 7){
+            if(i > 5){
                 correct = false;
             }
             Option newOption = new Option(correct, easyOptionText);
             easyOptionArray.add(newOption);
         }
 
-        return new ScienceQuestion(score, questionText, normalOptionArray, easyOptionArray);
+        String quickFact = optionStr[9];
+        return new ScienceQuestion(score, questionText, normalOptionArray, easyOptionArray, quickFact);
     }
 
     private static Question footballParsing(String questionText, String str){
@@ -85,7 +87,9 @@ public class Main {
             FootballPlayer newPlayer = new FootballPlayer(correct, playerSplit[0], playerSplit[1]);
             playerArray.add(newPlayer);
         }
-        return new FootballQuestion(score, questionText, new ArrayList<>(), playerArray);
+
+        String quickFact = playerStr[4];
+        return new FootballQuestion(score, questionText, new ArrayList<>(), playerArray, quickFact);
     }
 
     private static Question skiParsing(String questionText, String str){
@@ -99,7 +103,8 @@ public class Main {
         optionArray.add(new Option(correct, "True"));
         optionArray.add(new Option(!correct, "False"));
 
-        return new SkiQuestion(score, questionText, optionArray);
+        String quickFact = optionStr[2];
+        return new SkiQuestion(score, questionText, optionArray, quickFact);
     }
 
     private static Question swimmingParsing(String questionText, String str){
@@ -113,7 +118,8 @@ public class Main {
         optionArray.add(new Option(correct, "True"));
         optionArray.add(new Option(!correct, "False"));
 
-        return new SwimmingQuestion(score, questionText, optionArray);
+        String quickFact = optionStr[2];
+        return new SwimmingQuestion(score, questionText, optionArray, quickFact);
     }
 
     public static void main(String args[]){
@@ -146,7 +152,6 @@ public class Main {
                     }
  
                     if(categoryStr.charAt(0) == '$'){
-                        
                         questionArray.add(scienceParsing("Science: " + questionText, questionDetails));
                     }
 

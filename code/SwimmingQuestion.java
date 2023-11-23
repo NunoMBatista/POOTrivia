@@ -17,8 +17,8 @@ public class SwimmingQuestion extends Question{
     * @param questionText Contains the question's text
     * @param optionArray Contains the question's options
     */
-   public SwimmingQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray){
-       super(scoreValue, questionText, optionArray);
+   public SwimmingQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, String quickFact){
+       super(scoreValue, questionText, optionArray, quickFact);
    }
 
    protected void setEasyMode(int a){}; 

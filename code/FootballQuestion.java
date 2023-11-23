@@ -26,8 +26,8 @@ public class FootballQuestion extends Question{
      * @param questionText Contains the question's text
      * @param optionArray Contains the question's options
      */
-    public FootballQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, ArrayList<FootballPlayer> playerArray){
-        super(scoreValue, questionText, optionArray);
+    public FootballQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, ArrayList<FootballPlayer> playerArray, String quickFact){
+        super(scoreValue, questionText, optionArray, quickFact);
         this.playerArray = playerArray; 
         this.optionArray = playerToOption(useShirts=true);
     }

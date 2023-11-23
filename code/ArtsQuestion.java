@@ -21,8 +21,8 @@ public class ArtsQuestion extends Question {
      * @param questionText Contains the question's text
      * @param optionArray Contains the question's options
      */
-    public ArtsQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray){
-        super(scoreValue, questionText, optionArray);
+    public ArtsQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, String quickFact){
+        super(scoreValue, questionText, optionArray, quickFact);
     }
 
     /**
