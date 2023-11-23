@@ -21,6 +21,7 @@ public class SkiQuestion extends Question{
         super(scoreValue, questionText, optionArray);
     }
 
+    protected void setEasyMode(int a){}; 
     /**
      * Method used to calculate the question's value
      * @return returns the question's value after the category boosts

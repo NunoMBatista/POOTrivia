@@ -88,6 +88,36 @@ public class Main {
         return new FootballQuestion(score, questionText, new ArrayList<>(), playerArray);
     }
 
+    private static Question skiParsing(String questionText, String str){
+        ArrayList<Option> optionArray = new ArrayList<>(); 
+        String[] optionStr = str.split(";");
+        boolean correct = false;
+        int score = Integer.parseInt(optionStr[0]);
+        System.out.println(optionStr[1]);
+        if(optionStr[1].equals("true")){
+            correct = true;
+        }
+        optionArray.add(new Option(correct, "True"));
+        optionArray.add(new Option(!correct, "False"));
+
+        return new SkiQuestion(score, questionText, optionArray);
+    }
+
+    private static Question swimmingParsing(String questionText, String str){
+        ArrayList<Option> optionArray = new ArrayList<>(); 
+        String[] optionStr = str.split(";");
+        boolean correct = false;
+        int score = Integer.parseInt(optionStr[0]);
+        System.out.println(optionStr[1]);
+        if(optionStr[1].equals("true")){
+            correct = true;
+        }
+        optionArray.add(new Option(correct, "True"));
+        optionArray.add(new Option(!correct, "False"));
+
+        return new SwimmingQuestion(score, questionText, optionArray);
+    }
+
     public static void main(String args[]){
         File questionsFile = new File("pootrivia.txt");
         ArrayList<Question> questionArray = new ArrayList<>();
@@ -125,10 +155,10 @@ public class Main {
                             questionArray.add(footballParsing(questionText, questionDetails));
                         }
                         if(categoryStr.charAt(1) == '2'){
-                            return;
+                            questionArray.add(skiParsing(questionText, questionDetails));
                         }
                         if(categoryStr.charAt(1) == '3'){
-                            return;
+                            questionArray.add(swimmingParsing(questionText, questionDetails));
                         }                   
                     }
 

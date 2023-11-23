@@ -9,3 +9,7 @@ $
 Qual é o pantera que preta?
 @1
 4;sébio-4;naldo-5;pepe-21;jeff-1
+
+Qual é o ski mais tramado?
+@2
+5;false
