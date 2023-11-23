@@ -49,13 +49,17 @@ public abstract class Question{
     // protected void presentQuestion(){
     //     ...
     // }
+    
+    protected void shuffleOptions(){
+        Collections.shuffle(this.optionArray);
+    }
 
     /**
      * Method used to print the question's text along with it's options
      * @return out A string with the question's text along with it's options
      */
     public String toString(){
-        String out = "For " + this.scoreValue + " points! Q: " + this.questionText;
+        String out = "For " + this.scoreValue + " points! " + this.questionText;
         char counter = 'A';
         for(Option opt: this.optionArray){
             out += "\n" + counter + " - " + opt;

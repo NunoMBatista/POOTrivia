@@ -93,7 +93,6 @@ public class Main {
         String[] optionStr = str.split(";");
         boolean correct = false;
         int score = Integer.parseInt(optionStr[0]);
-        System.out.println(optionStr[1]);
         if(optionStr[1].equals("true")){
             correct = true;
         }
@@ -108,7 +107,6 @@ public class Main {
         String[] optionStr = str.split(";");
         boolean correct = false;
         int score = Integer.parseInt(optionStr[0]);
-        System.out.println(optionStr[1]);
         if(optionStr[1].equals("true")){
             correct = true;
         }
@@ -119,6 +117,10 @@ public class Main {
     }
 
     public static void main(String args[]){
+
+        /*
+         * Load the questions from pootrivia.txt to questionArray
+         */
         File questionsFile = new File("pootrivia.txt");
         ArrayList<Question> questionArray = new ArrayList<>();
 
@@ -140,28 +142,31 @@ public class Main {
                     String questionDetails = br.readLine();
 
                     if(categoryStr.charAt(0) == '&'){
-                        questionArray.add(artsParsing(questionText, questionDetails));
+                        questionArray.add(artsParsing("Arts: " + questionText, questionDetails));
                     }
  
                     if(categoryStr.charAt(0) == '$'){
                         
-                        questionArray.add(scienceParsing(questionText, questionDetails));
+                        questionArray.add(scienceParsing("Science: " + questionText, questionDetails));
                     }
 
                     if(categoryStr.charAt(0) == '@'){
-                        System.out.println("a");
+                        /*
+                         * Reads sub-category type.
+                         * 1 - Football
+                         * 2 - Ski
+                         * 3 - Swimming
+                         */
                         if(categoryStr.charAt(1) == '1'){
-                        System.out.println("b");
-                            questionArray.add(footballParsing(questionText, questionDetails));
+                            questionArray.add(footballParsing("Sports/Football: " + questionText, questionDetails));
                         }
                         if(categoryStr.charAt(1) == '2'){
-                            questionArray.add(skiParsing(questionText, questionDetails));
+                            questionArray.add(skiParsing("Sports/Ski: " + questionText, questionDetails));
                         }
                         if(categoryStr.charAt(1) == '3'){
-                            questionArray.add(swimmingParsing(questionText, questionDetails));
+                            questionArray.add(swimmingParsing("Sports/Swimming: " + questionText, questionDetails));
                         }                   
                     }
-
                     /*
                      *  Checks if EOF has been reached
                      *  If line == null, the reading process ceases
@@ -184,8 +189,30 @@ public class Main {
             return;
         }
 
-        for(Question quest: questionArray){
-            quest.setEasyMode(3);
+        ArrayList<Question> askedQuestions = new ArrayList<>();
+        /*
+         * Shuffle the array containing every question and take the first 5 into askedQuestions.
+         * The askedQuestions array list will be used in the TriviaGame object.
+         */
+        Collections.shuffle(questionArray);
+        for(int i = 0; i < 5; i++){
+            Question selectedQuestion = questionArray.get(i);
+            /*
+             * If the question is asked before the third round, it is set to the easy version of the corresponding category:
+             * Science - Use an easier set of options
+             * Arts - Present a subset of 3 options (including the correct one)
+             * Sports/Football - Use the player's names instead of shirt numbers as options
+             * Sports/Ski/Swimming - There is no easy version 
+             */
+            if(i < 2){
+                selectedQuestion.setEasyMode(3);
+            }
+
+            selectedQuestion.shuffleOptions();
+            askedQuestions.add(selectedQuestion);
+        }
+
+        for(Question quest: askedQuestions){
             System.out.println(quest+"\n\n");
         }
 

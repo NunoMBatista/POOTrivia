@@ -13,3 +13,7 @@ Qual é o pantera que preta?
 Qual é o ski mais tramado?
 @2
 5;false
+
+quano nada fiplem felps? 
+@3
+10;true
