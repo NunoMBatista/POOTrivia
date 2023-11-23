@@ -14,9 +14,10 @@ public class GUI {
         JButton button2 = new JButton ("come");
         JButton button3 = new JButton ("pau");
         JButton button4 = new JButton ("LOOOOOOOOOL");
+        JButton button5 = new JButton ("Nenhuma das outras(opção correta)");
         //n pode porque é mega vegetarians of the lifes
 
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel("Questão impossivel");
         panel.setLayout(new GridLayout(5,2));
         panel.add(label);
         panel.add(gunta);
@@ -24,6 +25,7 @@ public class GUI {
         panel.add(button2);
         panel.add(button3);
         panel.add(button4);
+        panel.add(button5);
 
         frame.add(panel);
         frame.setVisible(true);
