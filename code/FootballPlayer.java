@@ -27,7 +27,7 @@ public class FootballPlayer{
      * @param shirtNumber The player's shirt number
      * @param correct Defines if the option is correct
      */
-    public FootballPlayer(String name, String shirtNumber, boolean correct){
+    public FootballPlayer(boolean correct, String name, String shirtNumber){
         this.name = name;
         this.shirtNumber = shirtNumber;
         this.correct = correct; 

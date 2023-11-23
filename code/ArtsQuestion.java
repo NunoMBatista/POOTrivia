@@ -21,18 +21,16 @@ public class ArtsQuestion extends Question {
      * @param questionText Contains the question's text
      * @param optionArray Contains the question's options
      */
-    public ArtsQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, int nIncluded){
+    public ArtsQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray){
         super(scoreValue, questionText, optionArray);
-        this.optionArray = limitOptions(nIncluded);
-        Collections.shuffle(this.optionArray);
     }
 
     /**
      * Method used to limit the options in the questions' array
      * @param howMany Defines how many questions we want in the new array
-     * @return Returns an updated array with the desired number of options, including the correct one
      */
-    protected ArrayList<Option> limitOptions (int howMany){
+    @Override
+    protected void setEasyMode (int howMany){
         ArrayList<Option> updatedArray = new ArrayList<>();
         int addedQuestions = 0;
         boolean addedCorrect = false; 
@@ -41,15 +39,15 @@ public class ArtsQuestion extends Question {
                 updatedArray.add(option);
                 addedCorrect = true;
             }
-            else if(addedQuestions < howMany-1){
+            else if(addedQuestions < howMany){
                 updatedArray.add(option);
                 addedQuestions += 1;
             }
-            if((addedCorrect == true) && (addedQuestions == howMany-1)){
+            if((addedCorrect == true) && (addedQuestions == howMany)){
                 break;
             }
         }
-        return updatedArray;
+        this.optionArray = updatedArray;
     }
 
     /**

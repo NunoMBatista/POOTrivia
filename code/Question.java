@@ -41,6 +41,8 @@ public abstract class Question{
      */
     abstract protected int scoreCalculation();
 
+    abstract protected void setEasyMode(int n);
+
     /**
      * Method used to present the question in a GUI to the player
      */
@@ -53,8 +55,8 @@ public abstract class Question{
      * @return out A string with the question's text along with it's options
      */
     public String toString(){
-        String out = "Q: " + this.questionText;
-        char counter = 'A'; 
+        String out = "For " + this.scoreValue + " points! Q: " + this.questionText;
+        char counter = 'A';
         for(Option opt: this.optionArray){
             out += "\n" + counter + " - " + opt;
             counter += 1;

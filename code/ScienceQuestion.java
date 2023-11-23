@@ -26,13 +26,14 @@ public class ScienceQuestion extends Question{
      * @param optionArray Contains the question's options
      * @param easyOptionArray Contains the question's easy options
      */
-    public ScienceQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, ArrayList<Option> easyOptionArray, boolean useEasy){
+    public ScienceQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, ArrayList<Option> easyOptionArray){
         super(scoreValue, questionText, optionArray);
         this.easyOptionArray = easyOptionArray; 
-        this.useEasy = useEasy; 
-        if(useEasy == true){
-            this.optionArray = easyOptionArray;
-        }
+    }
+    
+    @Override
+    protected void setEasyMode(int a){
+        this.optionArray = this.easyOptionArray;
     }
     /**
      * Method used to calculate the question's value

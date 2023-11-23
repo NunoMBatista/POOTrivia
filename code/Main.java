@@ -5,56 +5,160 @@
  */
 
 import java.util.*;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 /**
  * Class to manage the game
  */
 public class Main {
-    public static void main(String args[]){
-        Option option1 = new Option(true, "option1text");
-        Option option2 = new Option(false, "option2text");
-        Option option3 = new Option(false, "option3text");
-        Option option4 = new Option(false, "option4text");
-        ArrayList<Option> optionList = new ArrayList<>();
-        optionList.add(option1);
-        optionList.add(option2);
-        optionList.add(option3);
-        optionList.add(option4);
-        String texto = "bazinga ou não?";
-        ArtsQuestion quest = new ArtsQuestion(5, texto, optionList, 3);
 
-        System.out.println(quest);
-        System.out.println("\n");
-        String texto2 = "Quem marca um golo?";
-        FootballPlayer sebio = new FootballPlayer("HumSébio", "4", true);
-        FootballPlayer sebio2 = new FootballPlayer("DoiSébio", "5", true);
-        FootballPlayer sebio3 = new FootballPlayer("TreSébio", "23", false);
-        FootballPlayer sebio4 = new FootballPlayer("QuatroSébio", "8", false);
-        ArrayList<FootballPlayer> playerList = new ArrayList<>();
-        playerList.add(sebio);
-        playerList.add(sebio2);
-        playerList.add(sebio3);
-        playerList.add(sebio4);
+    private static Question artsParsing(String questionText, String str){
+        ArrayList<Option> optionArray = new ArrayList<>(); // Initialize the option array
+        String[] optionStr = str.split(";");
 
-        FootballQuestion festion = new FootballQuestion(5, texto2, new ArrayList<>(), true, playerList);
-        System.out.println(festion);
-        System.out.println("\n");
-        
-        Option Hoption1 = new Option(true, "hard1text");
-        Option Hoption2 = new Option(false, "hard2text");
-        Option Hoption3 = new Option(false, "hard3text");
-        Option Hoption4 = new Option(false, "hard4text");
-        ArrayList<Option> HardList = new ArrayList<>();
-        HardList.add(Hoption1);
-        HardList.add(Hoption2);
-        HardList.add(Hoption3);
-        HardList.add(Hoption4);
+        int score = Integer.parseInt(optionStr[0]); // Read the score value 
+        boolean correct = true; // The first option is always correct
 
-        ScienceQuestion sestion = new ScienceQuestion(5, texto, HardList, optionList, false);
-        System.out.println(sestion);
-        String [] a = new String[0];
-        GUI.main(a);
+        for(int i = 1; i < 7; i++){
+            String optionText = optionStr[i]; // Read the option text 
+            if(i > 1){
+                correct = false;
+            }
+            Option newOption = new Option(correct, optionText);
+            optionArray.add(newOption);
+        }
+
+        return new ArtsQuestion(score, questionText, optionArray);
     }
+
+    private static Question scienceParsing(String questionText, String str){
+        ArrayList<Option> normalOptionArray = new ArrayList<>(); // Initialize the normal option array
+        ArrayList<Option> easyOptionArray = new ArrayList<>(); // Initialize the easy option array
+        String[] optionStr = str.split(";"); 
+
+        int score = Integer.parseInt(optionStr[0]); // Read the score value
+        boolean correct = true; // The first normal option is always correct
+
+        /*
+         * Read the normal options
+         */
+        for(int i = 1; i < 7; i++){
+            String optionText = optionStr[i];
+            if(i > 1){
+                correct = false;
+            }
+            Option newOption = new Option(correct, optionText); 
+            normalOptionArray.add(newOption);
+        }
+        /*
+         * Read the easy options
+         */
+        correct = true;
+        for(int i = 7; i < 13; i++){
+            String easyOptionText = optionStr[i];
+            if(i > 7){
+                correct = false;
+            }
+            Option newOption = new Option(correct, easyOptionText);
+            easyOptionArray.add(newOption);
+        }
+
+        return new ScienceQuestion(score, questionText, normalOptionArray, easyOptionArray);
+    }
+
+    private static Question footballParsing(String questionText, String str){
+        ArrayList<FootballPlayer> playerArray = new ArrayList<>();
+        String[] playerStr = str.split(";");
+
+        int score = Integer.parseInt(playerStr[0]);
+        boolean correct = true;
+
+        for(int i = 1; i < 4; i++){
+            String[] playerSplit = playerStr[i].split("-");
+            if(i > 1){
+                correct = false; 
+            }
+            FootballPlayer newPlayer = new FootballPlayer(correct, playerSplit[0], playerSplit[1]);
+            playerArray.add(newPlayer);
+        }
+        return new FootballQuestion(score, questionText, new ArrayList<>(), playerArray);
+    }
+
+    public static void main(String args[]){
+        File questionsFile = new File("pootrivia.txt");
+        ArrayList<Question> questionArray = new ArrayList<>();
+
+        if(questionsFile.exists()){
+            try{
+                FileReader fr = new FileReader(questionsFile);
+                BufferedReader br = new BufferedReader(fr);
+                
+                String line = "";
+                while(line != null){
+                    String questionText = br.readLine();; //Reads a question's text
+                    /*
+                     * Reads the category type.
+                     * & - Arts
+                     * $ - Science 
+                     * @ - Sports
+                     */
+                    String categoryStr = br.readLine(); 
+                    String questionDetails = br.readLine();
+
+                    if(categoryStr.charAt(0) == '&'){
+                        questionArray.add(artsParsing(questionText, questionDetails));
+                    }
+ 
+                    if(categoryStr.charAt(0) == '$'){
+                        
+                        questionArray.add(scienceParsing(questionText, questionDetails));
+                    }
+
+                    if(categoryStr.charAt(0) == '@'){
+                        System.out.println("a");
+                        if(categoryStr.charAt(1) == '1'){
+                        System.out.println("b");
+                            questionArray.add(footballParsing(questionText, questionDetails));
+                        }
+                        if(categoryStr.charAt(1) == '2'){
+                            return;
+                        }
+                        if(categoryStr.charAt(1) == '3'){
+                            return;
+                        }                   
+                    }
+
+                    /*
+                     *  Checks if EOF has been reached
+                     *  If line == null, the reading process ceases
+                     */
+                    line = br.readLine();
+                }
+                br.close();
+            }
+            catch(FileNotFoundException e){
+                System.out.println("Error: questions file is missing from the folder");
+                return;
+            }
+            catch(IOException e){
+                System.out.println("Error: Input/Output problem");
+                return;
+            }
+        }
+        else{
+            System.out.println("Error: questions file is missing from the folder");
+            return;
+        }
+
+        for(Question quest: questionArray){
+            quest.setEasyMode(3);
+            System.out.println(quest+"\n\n");
+        }
+
+    }
+
 }

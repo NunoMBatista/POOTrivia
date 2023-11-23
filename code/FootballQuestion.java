@@ -26,11 +26,10 @@ public class FootballQuestion extends Question{
      * @param questionText Contains the question's text
      * @param optionArray Contains the question's options
      */
-    public FootballQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, boolean useShirts, ArrayList<FootballPlayer> playerArray){
+    public FootballQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, ArrayList<FootballPlayer> playerArray){
         super(scoreValue, questionText, optionArray);
-        this.useShirts = useShirts; 
         this.playerArray = playerArray; 
-        this.optionArray = playerToOption(useShirts);
+        this.optionArray = playerToOption(useShirts=true);
     }
     
     /**
@@ -52,6 +51,10 @@ public class FootballQuestion extends Question{
         return updatedArray;
     }
 
+    @Override
+    protected void setEasyMode(int a){
+        this.optionArray = playerToOption(useShirts=false);
+    }
     /**
      * Method used to calculate the question's value
      * @return returns the question's value after the category boosts
