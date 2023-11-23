@@ -18,7 +18,7 @@ public class GUI {
         //n pode porque é mega vegetarians of the lifes
 
         JPanel panel = new JPanel("Questão impossivel");
-        panel.setLayout(new GridLayout(5,2));
+        panel.setLayout(new GridLayout(6,2));
         panel.add(label);
         panel.add(gunta);
         panel.add(button1);
