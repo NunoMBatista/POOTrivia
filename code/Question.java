@@ -4,12 +4,13 @@
  * @version 1.0
  */
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Class to manage questions
  */
-public abstract class Question{
+public abstract class Question implements Serializable{
     /**
      * Defines the value of the question
      */

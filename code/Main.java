@@ -7,6 +7,8 @@
 import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import java.time.*;
+import java.time.format.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
@@ -121,78 +123,135 @@ public class Main {
         String quickFact = optionStr[2];
         return new SwimmingQuestion(score, questionText, optionArray, quickFact);
     }
+    
+    private static void storeGame(TriviaGame game){
+        String fileName = game.constructObjectFileName();
+        File objFile = new File("gamefiles/" + fileName);
+        File gamesFile = new File("gamefiles/gamesplayed.txt");
+        try{
+            FileOutputStream fos = new FileOutputStream(objFile);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(game);
+            oos.close();
 
+            FileWriter fw = new FileWriter(gamesFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("\n" + fileName);
+            bw.close();
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Error: file not created");
+        }
+        catch(IOException e){
+            e.printStackTrace();
+            System.out.println("Error: data not written");
+        }
+    }
+
+    private static ArrayList<TriviaGame> readGames(){
+        ArrayList<TriviaGame> games = new ArrayList<>();
+        File gamesFile = new File("gamefiles/gamesplayed.txt");
+    
+        try{
+            FileReader fr = new FileReader(gamesFile);
+            BufferedReader br = new BufferedReader(fr);
+
+            String line = br.readLine(); // Skips empty row
+            line = br.readLine();
+            while(line != null){
+                File fileName = new File("gamefiles/" + line);
+                FileInputStream fis = new FileInputStream(fileName);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+
+                TriviaGame game = (TriviaGame)ois.readObject();
+                games.add(game);
+                
+                line = br.readLine();
+                ois.close();
+            }
+            br.close();
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Error: file not found");
+        }
+        catch(IOException e){
+            e.printStackTrace();
+            System.out.println("Error: Input/Output problem");
+        }
+        catch(ClassNotFoundException e){
+            System.out.println("Error: can't convert object");
+        }
+
+        return games;
+    }
+    
     public static void main(String args[]){
 
         /*
          * Load the questions from pootrivia.txt to questionArray
          */
-        File questionsFile = new File("pootrivia.txt");
+        File questionsFile = new File("gamefiles/pootrivia.txt");
         ArrayList<Question> questionArray = new ArrayList<>();
 
-        if(questionsFile.exists()){
-            try{
-                FileReader fr = new FileReader(questionsFile);
-                BufferedReader br = new BufferedReader(fr);
-                
-                String line = "";
-                while(line != null){
-                    String questionText = br.readLine();; //Reads a question's text
-                    /*
-                     * Reads the category type.
-                     * & - Arts
-                     * $ - Science 
-                     * @ - Sports
-                     */
-                    String categoryStr = br.readLine(); 
-                    String questionDetails = br.readLine();
+        try{
+            FileReader fr = new FileReader(questionsFile);
+            BufferedReader br = new BufferedReader(fr);
+            
+            String line = "";
+            while(line != null){
+                String questionText = br.readLine();; //Reads a question's text
+                /*
+                    * Reads the category type.
+                    * & - Arts
+                    * $ - Science 
+                    * @ - Sports
+                    */
+                String categoryStr = br.readLine(); 
+                String questionDetails = br.readLine();
 
-                    if(categoryStr.charAt(0) == '&'){
-                        questionArray.add(artsParsing("Arts: " + questionText, questionDetails));
-                    }
- 
-                    if(categoryStr.charAt(0) == '$'){
-                        questionArray.add(scienceParsing("Science: " + questionText, questionDetails));
-                    }
-
-                    if(categoryStr.charAt(0) == '@'){
-                        /*
-                         * Reads sub-category type.
-                         * 1 - Football
-                         * 2 - Ski
-                         * 3 - Swimming
-                         */
-                        if(categoryStr.charAt(1) == '1'){
-                            questionArray.add(footballParsing("Sports/Football: " + questionText, questionDetails));
-                        }
-                        if(categoryStr.charAt(1) == '2'){
-                            questionArray.add(skiParsing("Sports/Ski: " + questionText, questionDetails));
-                        }
-                        if(categoryStr.charAt(1) == '3'){
-                            questionArray.add(swimmingParsing("Sports/Swimming: " + questionText, questionDetails));
-                        }                   
-                    }
-                    /*
-                     *  Checks if EOF has been reached
-                     *  If line == null, the reading process ceases
-                     */
-                    line = br.readLine();
+                if(categoryStr.charAt(0) == '&'){
+                    questionArray.add(artsParsing("Arts: " + questionText, questionDetails));
                 }
-                br.close();
+
+                if(categoryStr.charAt(0) == '$'){
+                    questionArray.add(scienceParsing("Science: " + questionText, questionDetails));
+                }
+
+                if(categoryStr.charAt(0) == '@'){
+                    /*
+                        * Reads sub-category type.
+                        * 1 - Football
+                        * 2 - Ski
+                        * 3 - Swimming
+                        */
+                    if(categoryStr.charAt(1) == '1'){
+                        questionArray.add(footballParsing("Sports/Football: " + questionText, questionDetails));
+                    }
+                    if(categoryStr.charAt(1) == '2'){
+                        questionArray.add(skiParsing("Sports/Ski: " + questionText, questionDetails));
+                    }
+                    if(categoryStr.charAt(1) == '3'){
+                        questionArray.add(swimmingParsing("Sports/Swimming: " + questionText, questionDetails));
+                    }                   
+                }
+                /*
+                    *  Checks if EOF has been reached
+                    *  If line == null, the reading process ceases
+                    */
+                line = br.readLine();
             }
-            catch(FileNotFoundException e){
-                System.out.println("Error: questions file is missing from the folder");
-                return;
-            }
-            catch(IOException e){
-                System.out.println("Error: Input/Output problem");
-                return;
-            }
+            br.close();
         }
-        else{
+        catch(FileNotFoundException e){
             System.out.println("Error: questions file is missing from the folder");
             return;
         }
+        catch(IOException e){
+            e.printStackTrace();
+            System.out.println("Error: Input/Output problem");
+            return;
+        }
+    
 
         ArrayList<Question> askedQuestions = new ArrayList<>();
         /*
@@ -221,6 +280,21 @@ public class Main {
             System.out.println(quest+"\n\n");
         }
 
-    }
+        
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
+        String formattedDateTime = currentDateTime.format(formatter);
+        String playerName = "games bosa";
+        boolean[] correct = {false, true, true, false, true};
+        TriviaGame newGame = new TriviaGame(playerName, formattedDateTime, askedQuestions, correct); 
 
+        storeGame(newGame);
+        ArrayList<TriviaGame> games = readGames();
+   
+
+        for(TriviaGame game: games){
+            System.out.println(game.playerName + ";" + game.dateTime + ";" + game.calculateTotalScore(game) + "\n");
+        }
+
+    }
 }

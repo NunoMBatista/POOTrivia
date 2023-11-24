@@ -4,10 +4,12 @@
  * @version 1.0
  */
 
+import java.io.Serializable;
+
 /**
  * Class used to manage the question's options 
  */
-public class Option {
+public class Option implements Serializable{
     /**
      * Defines if the option is correct
      */

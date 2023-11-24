@@ -4,12 +4,13 @@
  * @version 1.0
  */
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Class to manage an instance of the game 
  */
-public class TriviaGame {
+public class TriviaGame implements Serializable{
     /**
      * Contains the player's name
      */
@@ -26,10 +27,7 @@ public class TriviaGame {
      * Defines if the question of indice i was answered correctly
      */
     protected boolean[] correctIndices;
-    /**
-     * The player's final score
-     */
-    protected int finalScore = 0;
+
     /**
      * Constructor for the TriviaGame class
      * @param playerName Contains the player's name
@@ -43,4 +41,29 @@ public class TriviaGame {
         this.askedQuestions = askedQuestions;
         this.correctIndices = correctIndices;
     }
+
+    protected int calculateTotalScore(TriviaGame game){
+        int totalScore = 0; 
+        for(int idx = 0; idx < 5; idx++){
+            if(this.correctIndices[idx] == true){
+                totalScore += this.askedQuestions.get(idx).scoreCalculation();
+            }
+        }
+        return totalScore;
+    }
+
+    protected String extractInitials(){
+        String[] splitName = this.playerName.split(" ");
+        String out = "";
+        for(String it: splitName){
+            out += it.charAt(0);
+        }
+        return out;
+    }
+
+    protected String constructObjectFileName(){
+        String playerInitials = extractInitials();
+        return "pootrivia_jogo_" + this.dateTime + "_" + playerInitials + ".dat";
+    }
+
 }

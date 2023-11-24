@@ -4,6 +4,7 @@
  * @version 1.0
  */
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
