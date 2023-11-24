@@ -38,6 +38,7 @@ public class ArtsQuestion extends Question {
             if(option.correct == true){
                 updatedArray.add(option);
                 addedCorrect = true;
+                addedQuestions += 1;
             }
             else if(addedQuestions < howMany){
                 updatedArray.add(option);

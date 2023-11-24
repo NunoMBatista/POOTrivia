@@ -39,9 +39,6 @@ public class Option implements Serializable{
      */
     public String toString(){
         String out = this.optionText;
-        if(this.correct == true){
-            return out + " (Correct)";
-        }
         return out;
     }
 }

@@ -81,7 +81,7 @@ public class Main {
         int score = Integer.parseInt(playerStr[0]);
         boolean correct = true;
 
-        for(int i = 1; i < 4; i++){
+        for(int i = 1; i < 5; i++){
             String[] playerSplit = playerStr[i].split("-");
             if(i > 1){
                 correct = false; 
@@ -90,7 +90,7 @@ public class Main {
             playerArray.add(newPlayer);
         }
 
-        String quickFact = playerStr[4];
+        String quickFact = playerStr[5];
         return new FootballQuestion(score, questionText, new ArrayList<>(), playerArray, quickFact);
     }
 
@@ -316,6 +316,10 @@ public class Main {
         boolean[] correctIndices = new boolean[5];
         for(int stage = 0; stage < 5; stage++){
             Question stageQuestion = askedQuestions.get(stage);
+            if(stage < 3){
+                stageQuestion.setEasyMode(3);
+                System.out.println("--EASY MODE--");
+            }
             ArrayList<Option> options = stageQuestion.optionArray;
             System.out.println(stageQuestion);
             System.out.print("Select option: ");
@@ -328,7 +332,8 @@ public class Main {
                 System.out.println("\nINCORRECT!");
                 correctIndices[stage] = false;
             }
-            System.out.println(stageQuestion.printFact());
+            System.out.println(stageQuestion.printFact() + "\n\n");
+            
         }
         sc.close();
 
@@ -342,10 +347,11 @@ public class Main {
    
         ArrayList<TriviaGame> topGames = getTop(games); 
 
+        System.out.println("Your Score: " + newGame.calculateTotalScore());
         System.out.println("\n[TOP 3]\n");
 
         for(TriviaGame game: topGames){
-            System.out.println(game.playerName + " at " + game.dateTime + " with score: " + game.calculateTotalScore() + "\n");
+            System.out.println(game.playerName + " at " + game.dateTime + " with score: " + game.calculateTotalScore());
         }
 
     }
