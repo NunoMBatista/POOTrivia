@@ -17,7 +17,7 @@ public class GUI {
         JButton button5 = new JButton ("Nenhuma das outras(opção correta)");
         //n pode porque é mega vegetarians of the lifes
 
-        JPanel panel = new JPanel("Questão impossivel");
+        JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6,2));
         panel.add(label);
         panel.add(gunta);

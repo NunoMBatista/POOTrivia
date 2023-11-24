@@ -16,7 +16,7 @@ import java.io.*;
 /**
  * Class to manage the game
  */
-public class Main {
+public class Main{
 
     private static Question artsParsing(String questionText, String str){
         ArrayList<Option> optionArray = new ArrayList<>(); // Initialize the option array
@@ -302,13 +302,31 @@ public class Main {
              * Sports/Football - Use the player's names instead of shirt numbers as options
              * Sports/Ski/Swimming - There is no easy version 
              */
-            if(i < 2){
-                selectedQuestion.setEasyMode(3);
-            }
+            // if(i < 2){
+            //     selectedQuestion.setEasyMode(3);
+            // }
 
             selectedQuestion.shuffleOptions();
             askedQuestions.add(selectedQuestion);
         }
+
+        // JFrame frame = new JFrame();
+        // frame.setTitle("POO Trivia Game");
+        // frame.setSize(800, 600);
+        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // JLabel nameLabel = new JLabel("Insert your name");
+        // JTextField nameText = new JTextField(20);
+        // JButton confirmButton = new JButton("Confirm");
+        // JPanel namePanel = new JPanel();
+        // namePanel.setLayout(new GridLayout(3, 1));
+        // namePanel.add(nameLabel);
+        // namePanel.add(nameText);
+        // namePanel.add(confirmButton);
+        // frame.add(namePanel);
+        // frame.setVisible(true);
+
+        
 
         System.out.print("Insert name: ");
         Scanner sc = new Scanner(System.in);
@@ -316,7 +334,7 @@ public class Main {
         boolean[] correctIndices = new boolean[5];
         for(int stage = 0; stage < 5; stage++){
             Question stageQuestion = askedQuestions.get(stage);
-            if(stage < 3){
+            if(stage < 2){
                 stageQuestion.setEasyMode(3);
                 System.out.println("--EASY MODE--");
             }
@@ -337,6 +355,7 @@ public class Main {
         }
         sc.close();
 
+
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
         String formattedDateTime = currentDateTime.format(formatter);
@@ -344,7 +363,6 @@ public class Main {
 
         storeGame(newGame);
         ArrayList<TriviaGame> games = readGames();
-   
         ArrayList<TriviaGame> topGames = getTop(games); 
 
         System.out.println("Your Score: " + newGame.calculateTotalScore());
