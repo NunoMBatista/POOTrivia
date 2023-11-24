@@ -220,7 +220,6 @@ public class Main{
     }
 
     public static void main(String args[]){
-
         /*
          * Load the questions from pootrivia.txt to questionArray
          */
@@ -327,7 +326,6 @@ public class Main{
         // frame.setVisible(true);
 
         
-
         System.out.print("Insert name: ");
         Scanner sc = new Scanner(System.in);
         String name = sc.nextLine();
