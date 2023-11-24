@@ -186,31 +186,33 @@ public class Main {
     }
 
     private static ArrayList<TriviaGame> getTop(ArrayList<TriviaGame> games){
-        int[] scoreIndices = new int[games.size()];
-        int first = 0, second = 0, third = 0;
-        for(int i = 0; i < games.size(); i++){
+        int nGames = games.size();
+        int[] scoreIndices = new int[nGames + 1];
+        scoreIndices[nGames] = -1;
+        int first = nGames, second = nGames, third = nGames;
+        for(int i = 0; i < nGames; i++){
             scoreIndices[i] = (games.get(i)).calculateTotalScore();
             if (scoreIndices[i] >= scoreIndices[first]){
                 third = second;
                 second = first; 
                 first = i;
             }
-            else if(scoreIndices[i] >= scoreIndices[second]){
+            else if(scoreIndices[i] < scoreIndices[first] && scoreIndices[i] >= scoreIndices[second]){
                 third = second;
                 second = i;
             }
-            else if(scoreIndices[i] >= scoreIndices[third]){
+            else if(scoreIndices[i] < scoreIndices[second] && scoreIndices[i] >= scoreIndices[third]){
                 third = i;
             }
         } 
         
         ArrayList<TriviaGame> topGames = new ArrayList<>();
         topGames.add(games.get(first));
-        if(scoreIndices.length == 1){
+        if(scoreIndices.length == 2){
             return topGames;
         }
         topGames.add(games.get(second));
-        if(scoreIndices.length == 2){
+        if(scoreIndices.length == 3){
             return topGames;
         }
         topGames.add(games.get(third));
@@ -308,31 +310,42 @@ public class Main {
             askedQuestions.add(selectedQuestion);
         }
 
-        for(Question quest: askedQuestions){
-            System.out.println(quest+"\n\n");
+        System.out.print("Insert name: ");
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        boolean[] correctIndices = new boolean[5];
+        for(int stage = 0; stage < 5; stage++){
+            Question stageQuestion = askedQuestions.get(stage);
+            ArrayList<Option> options = stageQuestion.optionArray;
+            System.out.println(stageQuestion);
+            System.out.print("Select option: ");
+            int selectedOption = sc.nextLine().charAt(0) - 'A';
+            if(options.get(selectedOption).correct == true){
+                System.out.println("\nCORRECT!");
+                correctIndices[stage] = true;
+            }
+            else{
+                System.out.println("\nINCORRECT!");
+                correctIndices[stage] = false;
+            }
+            System.out.println(stageQuestion.printFact());
         }
+        sc.close();
 
-        
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
         String formattedDateTime = currentDateTime.format(formatter);
-        String playerName = "yame bosa";
-        boolean[] correct = {false, true, true, false, true};
-        TriviaGame newGame = new TriviaGame(playerName, formattedDateTime, askedQuestions, correct); 
+        TriviaGame newGame = new TriviaGame(name, formattedDateTime, askedQuestions, correctIndices); 
 
         storeGame(newGame);
         ArrayList<TriviaGame> games = readGames();
    
         ArrayList<TriviaGame> topGames = getTop(games); 
 
-        for(TriviaGame game: games){
-            System.out.println(game.playerName + ";" + game.dateTime + ";" + game.calculateTotalScore() + "\n");
-        }
-
-        System.out.println("\n\n");
+        System.out.println("\n[TOP 3]\n");
 
         for(TriviaGame game: topGames){
-            System.out.println(game.playerName + ";" + game.dateTime + ";" + game.calculateTotalScore() + "\n");
+            System.out.println(game.playerName + " at " + game.dateTime + " with score: " + game.calculateTotalScore() + "\n");
         }
 
     }

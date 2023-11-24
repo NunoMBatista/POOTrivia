@@ -57,6 +57,9 @@ public abstract class Question implements Serializable{
         Collections.shuffle(this.optionArray);
     }
 
+    public String printFact(){
+        return "["+ this.quickFact + "]\n\n";
+    }
     /**
      * Method used to print the question's text along with it's options
      * @return out A string with the question's text along with it's options
@@ -68,7 +71,6 @@ public abstract class Question implements Serializable{
             out += "\n" + counter + " - " + opt;
             counter += 1;
         }
-        out += "\n[" + quickFact + "]";
         return out; 
     }
         
