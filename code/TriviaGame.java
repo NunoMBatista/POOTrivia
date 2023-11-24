@@ -42,7 +42,7 @@ public class TriviaGame implements Serializable{
         this.correctIndices = correctIndices;
     }
 
-    protected int calculateTotalScore(TriviaGame game){
+    protected int calculateTotalScore(){
         int totalScore = 0; 
         for(int idx = 0; idx < 5; idx++){
             if(this.correctIndices[idx] == true){

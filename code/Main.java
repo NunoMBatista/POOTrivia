@@ -184,7 +184,39 @@ public class Main {
 
         return games;
     }
-    
+
+    private static ArrayList<TriviaGame> getTop(ArrayList<TriviaGame> games){
+        int[] scoreIndices = new int[games.size()];
+        int first = 0, second = 0, third = 0;
+        for(int i = 0; i < games.size(); i++){
+            scoreIndices[i] = (games.get(i)).calculateTotalScore();
+            if (scoreIndices[i] >= scoreIndices[first]){
+                third = second;
+                second = first; 
+                first = i;
+            }
+            else if(scoreIndices[i] >= scoreIndices[second]){
+                third = second;
+                second = i;
+            }
+            else if(scoreIndices[i] >= scoreIndices[third]){
+                third = i;
+            }
+        } 
+        
+        ArrayList<TriviaGame> topGames = new ArrayList<>();
+        topGames.add(games.get(first));
+        if(scoreIndices.length == 1){
+            return topGames;
+        }
+        topGames.add(games.get(second));
+        if(scoreIndices.length == 2){
+            return topGames;
+        }
+        topGames.add(games.get(third));
+        return topGames;
+    }
+
     public static void main(String args[]){
 
         /*
@@ -284,16 +316,23 @@ public class Main {
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
         String formattedDateTime = currentDateTime.format(formatter);
-        String playerName = "games bosa";
+        String playerName = "yame bosa";
         boolean[] correct = {false, true, true, false, true};
         TriviaGame newGame = new TriviaGame(playerName, formattedDateTime, askedQuestions, correct); 
 
         storeGame(newGame);
         ArrayList<TriviaGame> games = readGames();
    
+        ArrayList<TriviaGame> topGames = getTop(games); 
 
         for(TriviaGame game: games){
-            System.out.println(game.playerName + ";" + game.dateTime + ";" + game.calculateTotalScore(game) + "\n");
+            System.out.println(game.playerName + ";" + game.dateTime + ";" + game.calculateTotalScore() + "\n");
+        }
+
+        System.out.println("\n\n");
+
+        for(TriviaGame game: topGames){
+            System.out.println(game.playerName + ";" + game.dateTime + ";" + game.calculateTotalScore() + "\n");
         }
 
     }
