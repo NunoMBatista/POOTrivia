@@ -294,37 +294,12 @@ public class Main{
         Collections.shuffle(questionArray);
         for(int i = 0; i < 5; i++){
             Question selectedQuestion = questionArray.get(i);
-            /**
-             * If the question is asked before the third round, it is set to the easy version of the corresponding category:
-             * Science - Use an easier set of options
-             * Arts - Present a subset of 3 options (including the correct one)
-             * Sports/Football - Use the player's names instead of shirt numbers as options
-             * Sports/Ski/Swimming - There is no easy version 
-             */
-            // if(i < 2){
-            //     selectedQuestion.setEasyMode(3);
-            // }
-
             selectedQuestion.shuffleOptions();
             askedQuestions.add(selectedQuestion);
         }
 
-        // JFrame frame = new JFrame();
-        // frame.setTitle("POO Trivia Game");
-        // frame.setSize(800, 600);
-        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        // JLabel nameLabel = new JLabel("Insert your name");
-        // JTextField nameText = new JTextField(20);
-        // JButton confirmButton = new JButton("Confirm");
-        // JPanel namePanel = new JPanel();
-        // namePanel.setLayout(new GridLayout(3, 1));
-        // namePanel.add(nameLabel);
-        // namePanel.add(nameText);
-        // namePanel.add(confirmButton);
-        // frame.add(namePanel);
-        // frame.setVisible(true);
-
+        Window window = new Window();
+        window.mainMenu();
         
         System.out.print("Insert name: ");
         Scanner sc = new Scanner(System.in);

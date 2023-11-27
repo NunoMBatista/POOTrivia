@@ -1,0 +1,20 @@
+Futebol//Quem marcou o golo que deu a vitoria a Portugal no Euro2016?//Eder;9,RenatoSanches;20,Pepe;3,Nani;17,Helder Postiga;23,Cristiano Ronaldo;7
+Futebol//Quem tem mais golos por Portugal?//Cristiano Ronaldo;7,Eder;9,RenatoSanches;20,Pepe;3,Nani;17,Helder Postiga;23
+
+Ski//O slalom gigante e uma disciplina olimpica que envolve uma descida num percurso definido sem portoes?//Falso,Verdadeiro
+Ski//A tecnica "cunha" e frequentemente usada por esquiadores iniciantes para controlar a velocidade?//Verdadeiro,Falso
+
+Natacao//O atleta conimbricense Diogo Ribeiro bateu o recorde nacional de mariposa em 50 metros?//Verdadeiro,Falso
+Natacao//O uso de oculos e proibido nas competicoes de natacao?//Falso,Verdadeiro
+
+Arte//Selecione o par Pintor-Pintura que descrito pela seguinte frase. Um ceu noturno, tumultuoso e estrelado sobre uma paisagem tranquila.//van Gogh - "A Noite azul",Leonardo DaVinci - "A Noite estrelada",Vincent Van Gogh - "A Noite estrelada",Pablo Picasso - "As estrelas da noite", Edward Munch - "A Noite", Caspar David Friedrich - "O Viajante Contemplando uma Mar de Nuvens"
+Arte//Qual destes filmes ganhou o Oscar de Melhor Filme em 1994?//Forrest Gump,Pulp Fiction,O Rei Leao,Um Sonho de Liberdade,Quatro Casamentos e um Funeral,O Piano,A Lista de Schindler
+Arte//Quem tem a musica de natal com mais exito mundial "All I want for Christmas", com 1.5MM streams no Spotify?//Mariah Carey, Mc Teteu, Pedro Abrunhosa, Anselmo Ralph, James Arthur, Michael Buble
+Arte//Quem e o autor do livro "Os Maias", uma obra-prima da literatura portuguesa?//Eca de Queiros,Jose Saramago,Fernando Pessoa,Camilo Castelo Branco,Almeida Garrett,Sophia de Mello Breyner Andresen,Luis de Camoes
+Arte//Quais sao as ultimas palavras do artista Biggie Cheese//Desconhecidas, "Ni**as in India", "Fonix ni**a", "Kill yourself ni**a", "I'm gonna rape you ni**a"
+
+Ciencia//Quem descobriu o bit?//Claud Shannon, Biggie Cheese, Albert Camus, Richard Feynman, Edward Bitus, Mario Bayte//a,a,a,a,a,a
+Ciencia//Que cientista iniciou o desenvolvimento da tabela periodica//Dmitri Mendeleev, Robert Boyle, Antoine Lavoisier, Linus Pauling, Glenn Seaborg//a,a,a,a,a,a
+Ciencia//Xantofobia e uma fobia caracterizada por://Cor amarela, Oculos de sol, Xadrez, Cantores, Pinguins//a,a,a,a,a,a
+Ciencia//Qual o Space Shuttle que explodiu ao entrar em orbita?//Columbia, Endeavor, Challenger, Discovery, Enterprise//a,a,a,a,a
+Ciencia//Que animal tem nome cientifico que se traduz para "Cavalo estranho"://Ornitorrinco, Canguru, Elefante, Mula, Girafa//a,a,a,a,a,a
