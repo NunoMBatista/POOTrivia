@@ -45,7 +45,7 @@ public class Main{
 
         int score = Integer.parseInt(optionStr[0]); // Read the score value
         
-        /*
+        /**
         * Read the normal options
         */
         boolean correct = true; // The first normal option is always correct
@@ -57,7 +57,7 @@ public class Main{
             Option newOption = new Option(correct, optionText); 
             normalOptionArray.add(newOption);
         }
-        /*
+        /**
          * Read the easy options
          */
         correct = true;
@@ -220,7 +220,7 @@ public class Main{
     }
 
     public static void main(String args[]){
-        /*
+        /**
          * Load the questions from pootrivia.txt to questionArray
          */
         File questionsFile = new File("gamefiles/pootrivia.txt");
@@ -233,7 +233,7 @@ public class Main{
             String line = "";
             while(line != null){
                 String questionText = br.readLine();; //Reads a question's text
-                /*
+                /**
                     * Reads the category type.
                     * & - Arts
                     * $ - Science 
@@ -251,7 +251,7 @@ public class Main{
                 }
 
                 if(categoryStr.charAt(0) == '@'){
-                    /*
+                    /**
                         * Reads sub-category type.
                         * 1 - Football
                         * 2 - Ski
@@ -267,7 +267,7 @@ public class Main{
                         questionArray.add(swimmingParsing("Sports/Swimming: " + questionText, questionDetails));
                     }                   
                 }
-                /*
+                /**
                     *  Checks if EOF has been reached
                     *  If line == null, the reading process ceases
                     */
@@ -287,14 +287,14 @@ public class Main{
     
 
         ArrayList<Question> askedQuestions = new ArrayList<>();
-        /*
+        /**
          * Shuffle the array containing every question and take the first 5 into askedQuestions.
          * The askedQuestions array list will be used in the TriviaGame object.
          */
         Collections.shuffle(questionArray);
         for(int i = 0; i < 5; i++){
             Question selectedQuestion = questionArray.get(i);
-            /*
+            /**
              * If the question is asked before the third round, it is set to the easy version of the corresponding category:
              * Science - Use an easier set of options
              * Arts - Present a subset of 3 options (including the correct one)
