@@ -41,6 +41,7 @@ public class TriviaGame implements Serializable{
         this.askedQuestions = askedQuestions;
         this.correctIndices = correctIndices;
     }
+    public TriviaGame(){};
 
     protected int calculateTotalScore(){
         int totalScore = 0; 
@@ -66,4 +67,32 @@ public class TriviaGame implements Serializable{
         return "pootrivia_jogo_" + this.dateTime + "_" + playerInitials + ".dat";
     }
 
+    protected void setName(String name){
+        this.playerName = name; 
+    }
+
+    protected void setDateTime(String dateTime){
+        this.dateTime = dateTime;
+    }
+
+    protected void setAskedQuestions(ArrayList<Question> askedQuestions){
+        this.askedQuestions = askedQuestions;
+    }
+
+    protected void setCorrectIndices(boolean[] correctIndices){
+        this.correctIndices = correctIndices;
+    }
+
+    protected String getName(){
+        return this.playerName;
+    }
+
+    /**
+     * This method sets the index corresponding to the game stage in the correctIndices array to the "correctness" of the chosen option
+     * @param idx
+     * @param correct
+     */
+    protected void updateCorrectIndices(int gameStage, boolean correct){
+        this.correctIndices[gameStage] = correct;
+    }
 }

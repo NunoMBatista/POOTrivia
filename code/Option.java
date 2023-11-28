@@ -41,4 +41,13 @@ public class Option implements Serializable{
         String out = this.optionText;
         return out;
     }
+
+    public String getOptionText(){
+        return this.optionText;
+    }
+
+    public boolean getCorrect(){
+        return this.correct;
+    }
+
 }

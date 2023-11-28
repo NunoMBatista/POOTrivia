@@ -123,8 +123,8 @@ public class Main{
         String quickFact = optionStr[2];
         return new SwimmingQuestion(score, questionText, optionArray, quickFact);
     }
-    
-    private static void storeGame(TriviaGame game){
+
+    public static void storeGame(TriviaGame game){
         String fileName = game.constructObjectFileName();
         File objFile = new File("gamefiles/" + fileName);
         File gamesFile = new File("gamefiles/gamesplayed.txt");
@@ -148,7 +148,7 @@ public class Main{
         }
     }
 
-    private static ArrayList<TriviaGame> readGames(){
+    public static ArrayList<TriviaGame> readGames(){
         ArrayList<TriviaGame> games = new ArrayList<>();
         File gamesFile = new File("gamefiles/gamesplayed.txt");
     
@@ -163,9 +163,8 @@ public class Main{
                 FileInputStream fis = new FileInputStream(fileName);
                 ObjectInputStream ois = new ObjectInputStream(fis);
 
-                TriviaGame game = (TriviaGame)ois.readObject();
+                TriviaGame game = (TriviaGame) ois.readObject();
                 games.add(game);
-                
                 line = br.readLine();
                 ois.close();
             }
@@ -185,8 +184,8 @@ public class Main{
         return games;
     }
 
-    private static ArrayList<TriviaGame> getTop(ArrayList<TriviaGame> games){
-        int nGames = games.size();
+    public static ArrayList<TriviaGame> getTop(ArrayList<TriviaGame> games){
+        int nGames = games.size()-1;
         int[] scoreIndices = new int[nGames + 1];
         scoreIndices[nGames] = -1;
         int first = nGames, second = nGames, third = nGames;
@@ -219,7 +218,12 @@ public class Main{
         return topGames;
     }
 
-    public static void main(String args[]){
+
+    /**
+     * Method used to setup the current game, setting it's asked questions, the player's name, the current date/time
+     * @param game
+     */
+    public static void setupGame(TriviaGame game){
         /**
          * Load the questions from pootrivia.txt to questionArray
          */
@@ -298,52 +302,19 @@ public class Main{
             askedQuestions.add(selectedQuestion);
         }
 
-        Window window = new Window();
-        window.mainMenu();
-        
-        System.out.print("Insert name: ");
-        Scanner sc = new Scanner(System.in);
-        String name = sc.nextLine();
-        boolean[] correctIndices = new boolean[5];
-        for(int stage = 0; stage < 5; stage++){
-            Question stageQuestion = askedQuestions.get(stage);
-            if(stage < 2){
-                stageQuestion.setEasyMode(3);
-                System.out.println("--EASY MODE--");
-            }
-            ArrayList<Option> options = stageQuestion.optionArray;
-            System.out.println(stageQuestion);
-            System.out.print("Select option: ");
-            int selectedOption = sc.nextLine().charAt(0) - 'A';
-            if(options.get(selectedOption).correct == true){
-                System.out.println("\nCORRECT!");
-                correctIndices[stage] = true;
-            }
-            else{
-                System.out.println("\nINCORRECT!");
-                correctIndices[stage] = false;
-            }
-            System.out.println(stageQuestion.printFact() + "\n\n");
-            
-        }
-        sc.close();
-
+        game.setAskedQuestions(askedQuestions);
+        boolean[] correctIndices = new boolean[5];  
 
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
         String formattedDateTime = currentDateTime.format(formatter);
-        TriviaGame newGame = new TriviaGame(name, formattedDateTime, askedQuestions, correctIndices); 
+        game.setDateTime(formattedDateTime);
+        game.setAskedQuestions(askedQuestions);
+        game.setCorrectIndices(correctIndices);
+    }        
 
-        storeGame(newGame);
-        ArrayList<TriviaGame> games = readGames();
-        ArrayList<TriviaGame> topGames = getTop(games); 
-
-        System.out.println("Your Score: " + newGame.calculateTotalScore());
-        System.out.println("\n[TOP 3]\n");
-
-        for(TriviaGame game: topGames){
-            System.out.println(game.playerName + " at " + game.dateTime + " with score: " + game.calculateTotalScore());
-        }
-
+    public static void main(String args[]){
+        Window window = new Window();
+        window.mainMenu();
     }
 }

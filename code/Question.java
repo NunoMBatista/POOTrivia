@@ -73,5 +73,17 @@ public abstract class Question implements Serializable{
         }
         return out; 
     }
-        
+
+    public String getText(){
+        return this.questionText;
+    }
+ 
+    public ArrayList<Option> getOptionArray(){
+        return this.optionArray;
+    }
+
+    public int getScoreValue(){
+        return this.scoreValue;
+    }
+    
 }
