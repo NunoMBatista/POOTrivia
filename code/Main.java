@@ -185,7 +185,7 @@ public class Main{
     }
 
     public static ArrayList<TriviaGame> getTop(ArrayList<TriviaGame> games){
-        int nGames = games.size()-1;
+        int nGames = games.size();
         int[] scoreIndices = new int[nGames + 1];
         scoreIndices[nGames] = -1;
         int first = nGames, second = nGames, third = nGames;
@@ -217,7 +217,6 @@ public class Main{
         topGames.add(games.get(third));
         return topGames;
     }
-
 
     /**
      * Method used to setup the current game, setting it's asked questions, the player's name, the current date/time

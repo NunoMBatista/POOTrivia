@@ -73,11 +73,12 @@ public abstract class Question implements Serializable{
         }
         return out; 
     }
-
+    
     public String getText(){
         return this.questionText;
     }
- 
+
+    
     public ArrayList<Option> getOptionArray(){
         return this.optionArray;
     }
@@ -86,4 +87,7 @@ public abstract class Question implements Serializable{
         return this.scoreValue;
     }
     
+    public String getQuickFact(){
+        return this.quickFact;
+    }
 }

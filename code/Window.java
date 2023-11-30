@@ -1,8 +1,12 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.awt.*;
+import java.awt.image.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Flow;
 import java.util.*;
 
@@ -19,13 +23,25 @@ public class Window extends JFrame{
     }
 
     public void mainMenu(){
-        clearFrame();
         JPanel mainPanel = new JPanel(new BorderLayout());
+        clearFrame();
+        // Image Panel
+        try{
+            BufferedImage logo = ImageIO.read(new File("gamefiles/logo.png"));
+            JPanel imagePanel = new JPanel(){
+                @Override
+                protected void paintComponent(Graphics g){
+                    super.paintComponent(g);
+                    g.drawImage(logo, 150, 150, 512, 121, rootPane);
+                    //mainPanel.add(logo);
+                }
+            };
+            mainPanel.add(imagePanel, BorderLayout.CENTER);
 
-        // Label
-        JLabel title = new JLabel("POO Trivia", SwingConstants.CENTER);
-        title.setFont(new Font("Roboto", Font.BOLD, 50));
-        
+        }
+        catch(IOException e){
+            System.out.println("Couldn't read the game's logo");
+        }        
 
         // Buttons
         Font buttonFont = new Font("Roboto", Font.BOLD, 20);
@@ -49,13 +65,11 @@ public class Window extends JFrame{
             } 
         });
 
-
         // Buttons Panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.add(newGame);
         buttonPanel.add(quit);
-        
-        mainPanel.add(title, BorderLayout.CENTER);
+
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         this.add(mainPanel);
         this.setVisible(true);
@@ -68,15 +82,19 @@ public class Window extends JFrame{
         // Label
         JLabel label = new JLabel("Insert your name:");
         label.setFont(new Font("Roboto", Font.BOLD, 35));
-        
+        JPanel labelPanel = new JPanel(new FlowLayout());
+        labelPanel.add(label);
+
+
         // Text field
         JTextField nameField = new JTextField(30);
         nameField.setPreferredSize(new Dimension(100, 50));
 
         // Button 
         JButton accept = new JButton("Accept");
-        accept.setPreferredSize(new Dimension(80, 50));
+        accept.setPreferredSize(new Dimension(120, 50));
         accept.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 if(nameField.getText().isEmpty()){
                     game.setName("No Name");
@@ -89,20 +107,24 @@ public class Window extends JFrame{
                 loadQuestion();
             }
         });
+
         // FlowLayout Panel
         JPanel secondayPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
-        secondayPanel.add(label);
         secondayPanel.add(nameField);
         secondayPanel.add(accept);
         
-        mainPanel.add(secondayPanel, BorderLayout.SOUTH);
+        mainPanel.add(labelPanel, BorderLayout.NORTH);
+        mainPanel.add(secondayPanel, BorderLayout.CENTER);
         this.add(mainPanel);
         this.setVisible(true);
     }
-
+    
     public void loadQuestion(){
-
         Question currQuestion = game.askedQuestions.get(gameStage);
+        if(gameStage < 2){
+            currQuestion.setEasyMode(3);    
+        }
+
         clearFrame();
 
         // Panels
@@ -126,13 +148,8 @@ public class Window extends JFrame{
                 public void actionPerformed(ActionEvent e){
                     game.updateCorrectIndices(gameStage, opt.getCorrect());
                     System.out.println("selected " + opt.getOptionText());
-                    gameStage += 1;
-                    if(gameStage < 5){
-                        loadQuestion();
-                    }
-                    else{
-                        endGame();
-                    }
+                    System.out.println(currQuestion.quickFact);
+                    afterQuestion(opt.correct, currQuestion.getQuickFact());
                 }
             });
             optButton.setPreferredSize(buttonDimension);
@@ -145,12 +162,57 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
 
+    private void afterQuestion(boolean correct, String quickFact){
+        gameStage += 1; 
+        clearFrame();
+
+        // Labels
+        JLabel correctLabel = new JLabel();
+        if(correct == true){
+            correctLabel.setText("CORRECT!");
+        }
+        else{
+            correctLabel.setText("INCORRECT!");
+        }
+        correctLabel.setFont(new Font("Roboto", Font.BOLD, 50));
+        JLabel quickFactLabel = new JLabel();
+        quickFactLabel.setText("<html><center><p>" + quickFact + "</p></center></html>");
+        quickFactLabel.setFont(new Font("Roboto", Font.BOLD, 30));
+        
+        // Button
+        JButton nextButton = new JButton("NEXT");
+        nextButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                if(gameStage < 5){
+                    loadQuestion();
+                }
+                else{
+                    endGame();
+                } 
+            }
+        });
+
+        // Panel 
+        JPanel mainPanel = new JPanel();
+        mainPanel.add(correctLabel);
+        mainPanel.add(quickFactLabel);
+        mainPanel.add(nextButton); 
+
+        this.add(mainPanel);
+        this.setVisible(true);
+    }
+
     private void endGame(){
         clearFrame();
-        ArrayList<TriviaGame> games = Main.readGames();
-        games.add(game);
         Main.storeGame(game);
+        ArrayList<TriviaGame> games = Main.readGames();
+        for(TriviaGame game: games){
+            System.out.println(game.getName());
+        }
         ArrayList<TriviaGame> topGames = Main.getTop(games);
+        for(TriviaGame topgame: topGames){
+            System.out.println(topgame.getName());
+        }
         Font namesFont = new Font("Roboto", Font.BOLD, 30);
 
         // Panels
