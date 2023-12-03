@@ -126,8 +126,8 @@ public class Main{
 
     public static void storeGame(TriviaGame game){
         String fileName = game.constructObjectFileName();
-        File objFile = new File("gamefiles/" + fileName);
-        File gamesFile = new File("gamefiles/gamesplayed.txt");
+        File objFile = new File("gamefiles" + File.separator + fileName);
+        File gamesFile = new File("gamefiles" + File.separator + "gamesplayed.txt");
         try{
             FileOutputStream fos = new FileOutputStream(objFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -150,7 +150,7 @@ public class Main{
 
     public static ArrayList<TriviaGame> readGames(){
         ArrayList<TriviaGame> games = new ArrayList<>();
-        File gamesFile = new File("gamefiles/gamesplayed.txt");
+        File gamesFile = new File("gamefiles" + File.separator + "gamesplayed.txt");
     
         try{
             FileReader fr = new FileReader(gamesFile);
@@ -159,7 +159,7 @@ public class Main{
             String line = br.readLine(); // Skips empty row
             line = br.readLine();
             while(line != null){
-                File fileName = new File("gamefiles/" + line);
+                File fileName = new File("gamefiles" + File.separator + line);
                 FileInputStream fis = new FileInputStream(fileName);
                 ObjectInputStream ois = new ObjectInputStream(fis);
 
@@ -226,7 +226,7 @@ public class Main{
         /**
          * Load the questions from pootrivia.txt to questionArray
          */
-        File questionsFile = new File("gamefiles/pootrivia.txt");
+        File questionsFile = new File("gamefiles" + File.separator + "pootrivia.txt");
         ArrayList<Question> questionArray = new ArrayList<>();
 
         try{

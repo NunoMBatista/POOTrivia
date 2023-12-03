@@ -27,7 +27,7 @@ public class Window extends JFrame{
         clearFrame();
         // Image Panel
         try{
-            BufferedImage logo = ImageIO.read(new File("gamefiles/logo.png"));
+            BufferedImage logo = ImageIO.read(new File("gamefiles" + File.separator + "logo.png"));
             JPanel imagePanel = new JPanel(){
                 @Override
                 protected void paintComponent(Graphics g){
