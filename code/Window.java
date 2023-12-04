@@ -1,3 +1,9 @@
+/**
+ * @author Nuno Batista 
+ * @author Diogo Joaquim
+ * @version 1.0
+ */
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -9,18 +15,35 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+/**
+ * Class used to manage the game's graphical user interface
+ */
 public class Window extends JFrame{
-
+    /**
+     * Defines the current stage of the game
+     */
     int gameStage = 0; 
-    JPanel panel; 
+    /**
+     * Contains the panel shown to the user 
+     */
+    JPanel panel;
+    /**
+     * Contains information about the current game beeing played
+     */
     TriviaGame game = new TriviaGame(); 
 
+    /**
+     * Constructor class for the Window class
+     */
     public Window(){
         this.setTitle("POO Trivia");
         this.setSize(800, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Method used to display the main menu on the GUI
+     */
     public void mainMenu(){
         JPanel mainPanel = new JPanel(new BorderLayout());
         clearFrame();
@@ -75,6 +98,9 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
 
+    /**
+     * Method used to present to the player a screen asking for their name
+     */
     public void getPlayerName(){
         clearFrame();
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -119,6 +145,9 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
     
+    /**
+     * Method used to display the current question being asked as well as it's options
+     */
     public void loadQuestion(){
         Question currQuestion = game.askedQuestions.get(gameStage);
         if(gameStage < 2){
@@ -161,6 +190,12 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
 
+    /**
+     * Method used to present a screen informing the player if the option they chose is the correct one
+     * as well as a quick fact about the question itself
+     * @param correct Defines if the question was answered correcly
+     * @param quickFact Contains a quick fact about the question
+     */
     private void afterQuestion(boolean correct, String quickFact){
         gameStage += 1; 
         clearFrame();
@@ -203,6 +238,9 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
 
+    /**
+     * Method used to present to the player their score as well as the 3 best scores of the games previously played
+     */
     private void endGame(){
         clearFrame();
         storeGame(game);
@@ -260,6 +298,9 @@ public class Window extends JFrame{
         this.setVisible(true);
     }
 
+    /**
+     * Method remove the content from the frame
+     */
     private void clearFrame() {
         this.getContentPane().removeAll();
         this.revalidate();
