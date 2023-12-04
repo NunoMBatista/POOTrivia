@@ -16,6 +16,7 @@ public class SwimmingQuestion extends Question{
     * @param scoreValue Contains the value of the question
     * @param questionText Contains the question's text
     * @param optionArray Contains the question's options
+    * @param quickFact Contains a quick fact about the question 
     */
    public SwimmingQuestion(int scoreValue, String questionText, ArrayList<Option> optionArray, String quickFact){
        super(scoreValue, questionText, optionArray, quickFact);

@@ -33,7 +33,6 @@ public class Window extends JFrame{
                 protected void paintComponent(Graphics g){
                     super.paintComponent(g);
                     g.drawImage(logo, 150, 150, 512, 121, rootPane);
-                    //mainPanel.add(logo);
                 }
             };
             mainPanel.add(imagePanel, BorderLayout.CENTER);
@@ -147,8 +146,6 @@ public class Window extends JFrame{
             optButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e){
                     game.updateCorrectIndices(gameStage, opt.getCorrect());
-                    System.out.println("selected " + opt.getOptionText());
-                    System.out.println(currQuestion.quickFact);
                     afterQuestion(opt.correct, currQuestion.getQuickFact());
                 }
             });
@@ -176,9 +173,9 @@ public class Window extends JFrame{
         }
         correctLabel.setFont(new Font("Roboto", Font.BOLD, 50));
         JLabel quickFactLabel = new JLabel();
-        quickFactLabel.setText("<html><center><p>" + quickFact + "</p></center></html>");
+        quickFactLabel.setText("<html><p>" + quickFact + "</p></html>");
         quickFactLabel.setFont(new Font("Roboto", Font.BOLD, 30));
-        
+
         // Button
         JButton nextButton = new JButton("NEXT");
         nextButton.addActionListener(new ActionListener() {
