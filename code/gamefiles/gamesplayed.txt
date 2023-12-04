@@ -1,3 +1,16 @@
 
-pootrivia_jogo_041220231614_NN.dat
-pootrivia_jogo_041220231616_g.dat
+pootrivia_jogo_041220232203_j.dat
+pootrivia_jogo_041220232203_q.dat
+pootrivia_jogo_041220232203_t.dat
+pootrivia_jogo_041220232204_u.dat
+pootrivia_jogo_041220232205_j.dat
+pootrivia_jogo_041220232205_g.dat
+pootrivia_jogo_041220232206_g.dat
+pootrivia_jogo_041220232207_g.dat
+pootrivia_jogo_041220232208_g.dat
+pootrivia_jogo_041220232208_p.dat
+pootrivia_jogo_041220232212_g.dat
+pootrivia_jogo_041220232212_p.dat
+pootrivia_jogo_041220232213_o.dat
+pootrivia_jogo_041220232216_j.dat
+pootrivia_jogo_041220232216_p.dat

@@ -3,11 +3,12 @@
  * @author Diogo Joaquim
  * @version 1.0
  */
+import java.io.*;
 
 /**
  * Class used to manage football player options
  */
-public class FootballPlayer{
+public class FootballPlayer implements Serializable{
     /**
      * The name of the player
      */

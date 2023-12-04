@@ -1,0 +1,47 @@
+Why did Richard P. Feynman win a nobel prize?
+$
+5;Theory of quantum eletrodynamics;Path integral formulation of quantum mechanics;The parton model;An integration trick;Theory of quantum eletrodynamics;Playing the bongos;Inventing arithmetic;Learning how to count;Feynman won the nobel prize in physics in 1965 along with Julian Schwinger and Shinichiro Tomonaga.
+
+Which one of these scientists where born on Pi Day (14th of march)?
+$
+2;Albert Einstein;Marie Curie;Roger Penrose;Jun John Sakurai;Albert Einstein;Bill Nye;Mr. Pi;Igor Newton;Albert Einstein was born on the 14th of March of 1879 in Ulm, Germany.
+
+Which of these was invented by Charles Babbage?
+$
+6;The difference engine;The cowcatcher for locomotives;The automata theory;The mechanical clock;The difference engine;The disney channel;The telescope;The dog leash;Charles Babbage invented the difference engine in the 1820s, it was used to compute a lot of mathematical functions used in science, mostly built by logarithmic and trignometric functions.
+
+Proposed by James Clerk Maxwell, what's the popular name for the thought experiment intended to violate the second law of thermodynamics?
+$
+3;Maxwell's demon;Maxwell's entropy reduction;Maxwell's chamber;Maxwell's imp;Maxwell's demon;Kelvin's refrigerator;Quick door;The big bang theory;Although proposed by Maxwell, it was Lord Kelvin who first gave the thought experiment the name of "Maxwell's demon".
+
+What thermodynamics concept was brought to information theory by Claude Shannon?
+$
+2;Entropy;Work;Byte;Channel capacity;Entropy;Computer;Cryptography;Noise;The Shannon's entropy or just entropy of a random variable is the average level of information associated with the variable's possible outcomes. The concept was brought from thermodynamics, where it describes the state of disorder in a system.
+
+Which one of these algorithms is used to compute the shortest path in a graph fro ma source node to every other node in a weighted graph with negative weights?
+$
+4;Bellman-Ford algorithm;Dijkstra's algorithm;Tarjan's algorithm;Kosaruju Algorithm;Bellman-Ford algorithm;Bubble sort;Bozo sort;Python's len() function;Although other algorithms like Dijkstra's compute the shortest path between two nodes in a graph, Bellman-Ford is able to handle graphs with negative weights
+
+In graph theory, what's an undirected graph where exactly one path connects any two vertices called?
+$
+3;Tree graph;Bipartite graph;Euclidean graph;Bi-linked graph;Tree graph;Big graph;Small graph;Graphite;The term tree was coined in 1857 by Arthur Cayley, a prolific British mathematician who is also known for his work as a lawyer
+
+Who played Jules Winnfield in Pulp Fiction?
+&
+3;Samuel L. Jackson;John Travolta;Will Smith;Jamie Foxx;Lebron James;António Costa;Jules Winnfeld, played by Samuel L. Jackson is an iconic character from Pulp Fiction (1994)
+
+In The Big Bang Theory, what's Sheldon Cooper's most famous phrase?
+&
+1;Bazinga;Bazooka;Bangladesh;Brofist;Bazófias;Bing Chilling;Sheldon Cooper uses the term bazinga throughout the show at the end of jokes or pranks to indicate sarcasm.
+
+Which one of these players have been nicknamed "A Pantera Negra"?
+@1
+3;Eusébio Ferreira-10;Cristiano Ronaldo-7;Ricardo Quaresma-20;Pepe-3;Eusébio, the legendary footballer earned many nicknames throughout history, including: "A Pantera Negra", "A Pérola Negra" and "O Rei".
+
+Is binding the name of the device that attaches a skier's feet to the ski?
+@2
+3;true;The ski binding started as a mere lether strap fastened over the toe of the boot.
+
+Did Michael Phelps win over 30 olympic medals?
+@3
+3;false;Michael Phelps "only" managed to get 28 medals in total, 23 of which are gold.
