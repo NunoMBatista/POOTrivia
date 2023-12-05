@@ -4,10 +4,12 @@
  * @version 1.0
  */
 
+import java.io.Serializable;
+
 /**
  * Class used to manage football player options
  */
-public class FootballPlayer{
+public class FootballPlayer implements Serializable{
     /**
      * The name of the player
      */

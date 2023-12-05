@@ -211,6 +211,7 @@ public class Window extends JFrame{
         correctLabel.setFont(new Font("Roboto", Font.BOLD, 50));
         JLabel quickFactLabel = new JLabel();
         quickFactLabel.setText("<html><p>" + quickFact + "</p></html>");
+        quickFactLabel.setPreferredSize(new Dimension(400, 400));
         quickFactLabel.setFont(new Font("Roboto", Font.BOLD, 30));
 
         // Button
@@ -229,10 +230,10 @@ public class Window extends JFrame{
         });
 
         // Panel 
-        JPanel mainPanel = new JPanel();
-        mainPanel.add(correctLabel);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.add(correctLabel, BorderLayout.NORTH);
         mainPanel.add(quickFactLabel);
-        mainPanel.add(nextButton); 
+        mainPanel.add(nextButton, BorderLayout.SOUTH); 
 
         this.add(mainPanel);
         this.setVisible(true);
