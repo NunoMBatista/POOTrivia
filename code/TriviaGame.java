@@ -31,9 +31,9 @@ public class TriviaGame implements Serializable{
     /**
      * Constructor for the TriviaGame class
      * @param playerName Contains the player's name
-     * @param dateTime Array with every question asked in the game
-     * @param askedQuestions Defines if the question of indice i was answered correctly
-     * @param correctIndices The player's final score
+     * @param dateTime contains information about when the game was played
+     * @param askedQuestions Array with every question asked in the game
+     * @param correctIndices Defines if the question of indice i was answered correctly
      */
     public TriviaGame(String playerName, String dateTime, ArrayList<Question> askedQuestions, boolean[] correctIndices){
         this.playerName = playerName; 

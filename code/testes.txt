@@ -1,0 +1,26 @@
+
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        boolean[] correctIndices = new boolean[5];
+        for(int stage = 0; stage < 5; stage++){
+            Question stageQuestion = askedQuestions.get(stage);
+            if(stage < 2){
+                stageQuestion.setEasyMode(3);
+                System.out.println("--EASY MODE--");
+            }
+            ArrayList<Option> options = stageQuestion.optionArray;
+            System.out.println(stageQuestion);
+            System.out.print("Select option: ");
+            int selectedOption = sc.nextLine().charAt(0) - 'A';
+            if(options.get(selectedOption).correct == true){
+                System.out.println("\nCORRECT!");
+                correctIndices[stage] = true;
+            }
+            else{
+                System.out.println("\nINCORRECT!");
+                correctIndices[stage] = false;
+            }
+            System.out.println(stageQuestion.printFact() + "\n\n");
+            
+        }
+        sc.close();
