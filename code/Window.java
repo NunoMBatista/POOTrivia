@@ -65,11 +65,10 @@
          }        
  
          // Buttons
-         Font buttonFont = new Font("Roboto", Font.BOLD, 20);
          Dimension buttonSize = new Dimension(200, 100); 
          
          JButton newGame = new JButton("New Game");
-         newGame.setFont(buttonFont);
+         newGame.setFont(new CustomFontBold(30));
          newGame.setPreferredSize(buttonSize);
          newGame.addActionListener(new ActionListener() {
              @Override
@@ -80,7 +79,7 @@
          });
  
          JButton quit = new JButton("Quit"); 
-         quit.setFont(buttonFont);
+         quit.setFont(new CustomFontBold(30));
          quit.setPreferredSize(buttonSize);
          quit.addActionListener(new ActionListener() {
              @Override
@@ -108,7 +107,7 @@
  
          // Label
          JLabel label = new JLabel("Insert your name:");
-         label.setFont(new Font("Roboto", Font.BOLD, 35));
+         label.setFont(new CustomFontBold(35));
          JPanel labelPanel = new JPanel(new FlowLayout());
          labelPanel.add(label);
  
@@ -120,6 +119,7 @@
          // Button 
          JButton accept = new JButton("Accept");
          accept.setPreferredSize(new Dimension(120, 50));
+         accept.setFont(new CustomFontBold(25));
          accept.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
@@ -161,7 +161,7 @@
  
          // Label 
          JLabel questionText = new JLabel("<html><center> For " + currQuestion.getScoreValue() + " points!!<br>" + currQuestion.getText() + "</center></html>");
-         questionText.setFont(new Font("Roboto", Font.BOLD, 30));
+         questionText.setFont(new CustomFontBold(30));
          
          // Buttons
          Dimension buttonDimension = new Dimension(200, 100);
@@ -171,7 +171,7 @@
              Option opt = optionArray.get(idx);
              JButton optButton = new JButton("<html><center>" + opt.getOptionText() + "</center></html>");
              
-             optButton.setFont(new Font("Helvetica", Font.BOLD, 20));
+             optButton.setFont(new CustomFontBold(20));
              optButton.addActionListener(new ActionListener() {
                  @Override
                  public void actionPerformed(ActionEvent e){
@@ -202,18 +202,22 @@
          // Labels
          JLabel correctLabel = new JLabel();
          if(correct == true){
-             correctLabel.setText("CORRECT!");
+            correctLabel.setText("CORRECT!");
+            correctLabel.setForeground(Color.GREEN);
          }
          else{
              correctLabel.setText("INCORRECT!");
+            correctLabel.setForeground(Color.RED);
          }
          correctLabel.setFont(new Font("Roboto", Font.BOLD, 50));
          JLabel quickFactLabel = new JLabel();
-         quickFactLabel.setText("<html><p>" + quickFact + "</p></html>");
-         quickFactLabel.setFont(new Font("Roboto", Font.BOLD, 30));
- 
+         quickFactLabel.setText("<html><p>Quick Fact: " + quickFact + "</p></html>");
+         quickFactLabel.setPreferredSize(new Dimension(100, 100));
+         quickFactLabel.setFont(new CustomFontBold(30));
+        
          // Button
          JButton nextButton = new JButton("NEXT");
+         nextButton.setPreferredSize(new Dimension(20, 80));
          nextButton.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e){
@@ -228,11 +232,10 @@
          });
  
          // Panel 
-         JPanel mainPanel = new JPanel();
-         mainPanel.add(correctLabel);
-         mainPanel.add(quickFactLabel);
-         mainPanel.add(nextButton); 
- 
+         JPanel mainPanel = new JPanel(new BorderLayout());
+         mainPanel.add(correctLabel, BorderLayout.NORTH);
+         mainPanel.add(nextButton, BorderLayout.SOUTH);
+         mainPanel.add(quickFactLabel, BorderLayout.CENTER);
          this.add(mainPanel);
          this.setVisible(true);
      }
@@ -251,7 +254,6 @@
          for(TriviaGame topgame: topGames){
              System.out.println(topgame.getName());
          }
-         Font namesFont = new Font("Roboto", Font.BOLD, 30);
  
          // Panels
          JPanel mainPanel = new JPanel(new BorderLayout());
@@ -261,16 +263,15 @@
          // Labels
          for(int i = 0; i < topGames.size(); i++){
              TriviaGame curGame = topGames.get(i);
-             JLabel gameLabel = new JLabel("<html><center>" + (i+1) + " -> " + curGame.getName() + " with score: " + curGame.calculateTotalScore() + "</center></html>");
-             gameLabel.setFont(namesFont);
+             JLabel gameLabel = new JLabel("<html><center>" + (i+1) + " -> " + curGame.getName() + " with score: " + curGame.calculateTotalScore() + " [" + (curGame.getDateTime()).substring(0, 2) + "/" + (curGame.getDateTime()).substring(2, 4) + "/" + (curGame.getDateTime()).substring(4, 8) + " - " + (curGame.getDateTime()).substring(8, 10) + ":" + (curGame.getDateTime()).substring(10, 12) + "]</center></html>");
+             gameLabel.setFont(new CustomFontBold(25));
              topScoresPanel.add(gameLabel);
          }
          JLabel newGame = new JLabel("<html><center> You got " + game.calculateTotalScore() + " points!</center></html>");
  
          // Buttons 
-         Font buttonFont = new Font("Roboto", Font.BOLD, 20);
          JButton playAgain = new JButton("Play Again");
-         playAgain.setFont(buttonFont);
+         playAgain.setFont(new CustomFontBold(30));
          playAgain.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e){
                  gameStage = 0;
@@ -278,7 +279,7 @@
              }
          });
          JButton quit = new JButton("Quit");
-         quit.setFont(buttonFont);
+         quit.setFont(new CustomFontBold(30));
          quit.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent e){
                  System.exit(0);
@@ -635,7 +636,31 @@
          game.setAskedQuestions(askedQuestions);
          game.setCorrectIndices(correctIndices);
      }        
- 
+
+    /**
+     * Class defining the font used throughout the game
+     */
+    private class CustomFont extends Font{
+        /**
+         * Constructor for the class CustomFont
+         * @param size Contains the font's size
+         */
+        private CustomFont(int size){
+            super("monospace", Font.PLAIN, size);
+        }
+    }
+    /**
+     * Class defining the font used throughout the game (with bold)
+     */
+    private class CustomFontBold extends Font{
+        /**
+         * Constructor for the class CustomFont
+         * @param size Contains the font's size
+         */
+        private CustomFontBold(int size){
+            super("monospace", Font.BOLD, size);
+        }
+    }
      public static void main(String args[]){
          Window window = new Window();
          window.mainMenu();
