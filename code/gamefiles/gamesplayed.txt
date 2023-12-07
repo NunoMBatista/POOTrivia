@@ -1,2 +1,6 @@
 
 pootrivia_jogo_051220232047_GW.dat
+pootrivia_jogo_071220231231_NN.dat
+pootrivia_jogo_071220231233_NN.dat
+pootrivia_jogo_071220231235_NN.dat
+pootrivia_jogo_071220231245_B.dat

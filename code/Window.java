@@ -65,8 +65,8 @@ public class Window extends JFrame{
         }        
 
         // Buttons
-        Dimension buttonSize = new Dimension(200, 100); 
-        
+        Dimension buttonSize = new Dimension(300, 100); 
+
         JButton newGame = new JButton("New Game");
         newGame.setFont(new CustomFontBold(30));
         newGame.setPreferredSize(buttonSize);
@@ -657,10 +657,25 @@ public class Window extends JFrame{
          * Constructor for the class CustomFont
          * @param size Contains the font's size
          */
-    private CustomFontBold(int size){
-        super("monospace", Font.BOLD, size);
+        private CustomFontBold(int size){
+            super(loadFont(size));
+        }
+        
+        private static Font loadFont(int size){
+            try{
+                Font base = Font.createFont(Font.TRUETYPE_FONT, new File("gamefiles" + File.separator + "mono.ttf"));
+                return base.deriveFont(Font.BOLD, size);
+            }
+            catch(IOException | FontFormatException e){
+                    System.out.println("Couldn't find font file");
+                    e.printStackTrace();
+            }
+            return new Font("Serif", Font.PLAIN, size); 
+        }
     }
-}
+
+    
+
     public static void main(String args[]){
         Window window = new Window();
         window.mainMenu();
