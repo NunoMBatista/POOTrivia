@@ -20,3 +20,6 @@ pootrivia_jogo_081220231528_NN.dat
 pootrivia_jogo_081220231537_GR.dat
 pootrivia_jogo_081220231538_GN.dat
 pootrivia_jogo_081220231541_NN.dat
+pootrivia_jogo_081220231614_g.dat
+pootrivia_jogo_081220231633_f.dat
+pootrivia_jogo_081220231636_f.dat

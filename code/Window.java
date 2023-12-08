@@ -46,40 +46,37 @@ public class Window extends JFrame{
      * Method used to display the main menu on the GUI
     */
     public void mainMenu(){
-    JPanel mainPanel = new JPanel(new BorderLayout());
-    clearFrame();
-    // Image Panel
-    try{
-        BufferedImage logo = ImageIO.read(new File("gamefiles" + File.separator + "logo.png"));
-        JPanel imagePanel = new JPanel(){
-            @Override
-            protected void paintComponent(Graphics g){
-                super.paintComponent(g);
-                g.drawImage(logo, 150, 150, 512, 121, rootPane);
-            }
-        };
-        imagePanel.setBackground(Color.BLACK);
-        mainPanel.add(imagePanel, BorderLayout.CENTER);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        clearFrame();
+        // Image Panel
+        try{
+            BufferedImage logo = ImageIO.read(new File("gamefiles" + File.separator + "logo.png"));
+            JPanel imagePanel = new JPanel(){
+                @Override
+                protected void paintComponent(Graphics g){
+                    super.paintComponent(g);
+                    g.drawImage(logo, 150, 150, 512, 121, rootPane);
+                }
+            };
+            imagePanel.setBackground(Color.BLACK);
+            mainPanel.add(imagePanel, BorderLayout.CENTER);
 
-    }
-    catch(IOException e){
-        System.out.println("Couldn't read the game's logo");
-    }        
+        }
+        catch(IOException e){
+            System.out.println("Couldn't read the game's logo");
+        }        
 
-    // Buttons
-    Font font = new CustomFontBold(30);
-    Dimension buttonSize = new Dimension(300, 100); 
-
-    JButton newGame = setupButton("New Game", buttonSize,  font);
-    newGame.addActionListener(new ActionListener() {
+        // Buttons
+        Dimension buttonSize = new Dimension(300, 100); 
+        CustomButton newGame = new CustomButton("New Game", 30, buttonSize);
+        newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 setupGame(game);
                 loadQuestion();
             }
         });
-
-        JButton quit=setupButton("Quit", buttonSize,  font);
+        CustomButton quit = new CustomButton("Quit", 30, buttonSize);
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -107,7 +104,7 @@ public class Window extends JFrame{
     JPanel mainPanel = new JPanel(new BorderLayout());
 
     // Label
-    JLabel label = setupLabel("Insert your name:", new CustomFontBold(35));
+    CustomLabel label = new CustomLabel("Insert your name:", 35);
     JPanel labelPanel = new JPanel(new FlowLayout());
     labelPanel.setBackground(Color.BLACK);
     labelPanel.add(label);
@@ -118,9 +115,10 @@ public class Window extends JFrame{
     nameField.setPreferredSize(new Dimension(100, 50));
     nameField.setBackground(Color.BLACK);
     nameField.setForeground(new Color(93,212,49));
+    nameField.setFont(new CustomFontBold(20));
 
     // Button 
-    JButton accept=setupButton("Accept", new Dimension(200, 50),  new CustomFontBold(25));
+    CustomButton accept = new CustomButton("Accept", 25,new Dimension(200, 50));
     accept.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -164,15 +162,15 @@ public class Window extends JFrame{
     mainPanel.setBackground(Color.BLACK);
 
     // Label 
-    JLabel questionText = setupLabel("<html><center> For " + currQuestion.getScoreValue() + " points!!<br>" + currQuestion.getText() + "</center></html>", new CustomFontBold(30));
+    CustomLabel questionText = new CustomLabel("<html><center> For " + currQuestion.getScoreValue() + " points!!<br>" + currQuestion.getText() + "</center></html>", 30);
 
     // Buttons
-    Dimension buttonDimension = new Dimension(200, 100);
+    Dimension buttonSize = new Dimension(200, 100);
     ArrayList<Option> optionArray = currQuestion.getOptionArray();
     int nOption = optionArray.size();
     for(int idx = 0; idx < nOption; idx++){
         Option opt = optionArray.get(idx);
-        JButton optButton = setupButton("<html><center>" + opt.getOptionText() + "</center></html>", buttonDimension, new CustomFontBold(15));
+        CustomButton optButton = new CustomButton("<html><center>" + opt.getOptionText() + "</center></html>", 15, buttonSize);
         
         optButton.addActionListener(new ActionListener() {
             @Override
@@ -201,20 +199,19 @@ public class Window extends JFrame{
     clearFrame();
 
     // Labels
-    JLabel correctLabel= new JLabel();
+    CustomLabel correctLabel = new CustomLabel("", 50);
     if(correct == true){
-        correctLabel = setupLabel("CORRECT!", new CustomFontBold(50));
-        correctLabel.setForeground(new Color(93,212,49));
+        correctLabel.setText("Correct");
+        correctLabel.setForeground(Color.GREEN);
     }
     else{
-        correctLabel = setupLabel("INCORRECT!", new CustomFontBold(50));
+        correctLabel.setText("INCORRECT");
         correctLabel.setForeground(Color.RED);
     }
-    JLabel quickFactLabel = setupLabel("<html><p>Quick Fact: " + quickFact + "</p></html>", new CustomFontBold(30));
-    quickFactLabel.setPreferredSize(new Dimension(100, 100));
-
+    CustomLabel quickFactLabel = new CustomLabel("<html><p>Quick Fact: " + quickFact + "</p></html>", 30);
+   
     // Button
-    JButton nextButton = setupButton("NEXT", new Dimension(20, 80), new CustomFontBold(30));
+    CustomButton nextButton = new CustomButton("NEXT", 30, new Dimension(20, 80));
     nextButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
@@ -261,23 +258,25 @@ public class Window extends JFrame{
     newGamePanel.setBackground(Color.BLACK);
     JPanel buttonPanel = new JPanel(new FlowLayout());
     buttonPanel.setBackground(Color.BLACK);
+    
     // Labels
     for(int i = 0; i < topGames.size(); i++){
         TriviaGame curGame = topGames.get(i);
-        JLabel gameLabel = setupLabel("<html><center>" + (i+1) + " -> " + curGame.getName() + " with score: " + curGame.calculateTotalScore() + " [" + (curGame.getDateTime()).substring(0, 2) + "/" + (curGame.getDateTime()).substring(2, 4) + "/" + (curGame.getDateTime()).substring(4, 8) + " - " + (curGame.getDateTime()).substring(8, 10) + ":" + (curGame.getDateTime()).substring(10, 12) + "]</center></html>", new CustomFontBold(25));
+        CustomLabel gameLabel = new CustomLabel("<html><center>" + (i+1) + " -> " + curGame.getName() + " with score: " + curGame.calculateTotalScore() + " [" + (curGame.getDateTime()).substring(0, 2) + "/" + (curGame.getDateTime()).substring(2, 4) + "/" + (curGame.getDateTime()).substring(4, 8) + " - " + (curGame.getDateTime()).substring(8, 10) + ":" + (curGame.getDateTime()).substring(10, 12) + "]</center></html>", 25);
         topScoresPanel.add(gameLabel);
     }
-    JLabel newGame = setupLabel("<html><center> You got " + game.calculateTotalScore() + " points!</center></html>", new CustomFontBold(25));
+    JLabel newGame = new CustomLabel("<html><center> You got " + game.calculateTotalScore() + " points!</center></html>",25);
 
     // Buttons 
-    JButton playAgain=setupButton("Play Again", new CustomFontBold(25));
+    Dimension buttonSize = new Dimension(300, 100);
+    CustomButton playAgain = new CustomButton("Play Again", 25, buttonSize);
     playAgain.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e){
             gameStage = 0;
             mainMenu();
         }
     });
-    JButton quit=setupButton("Quit", new CustomFontBold(25));
+    CustomButton quit = new CustomButton("Quit", 25, buttonSize);
     quit.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e){
             System.exit(0);
@@ -636,7 +635,7 @@ public class Window extends JFrame{
     }        
 
     /**
-     * Class defining the font used throughout the game (with bold)
+     * Class defining the font used throughout the game
     */
     private class CustomFontBold extends Font{
         /**
@@ -660,49 +659,38 @@ public class Window extends JFrame{
             return new Font("Serif", Font.PLAIN, size); 
         }
     }
-
-    private JButton setupButton(String text, Dimension buttonSize, Font font){
-    JButton button = new JButton(text);
-    button.setText(text);
-    button.setFont(font);
-    button.setForeground(new Color(93,212,49));
-    button.setBackground(Color.BLACK);
-    button.setPreferredSize(buttonSize);
-    button.setFocusPainted(false);
-    button.setBorderPainted(false);
-    return button;
-    }
-
-
-
-    private JLabel setupLabel(String text, Font font){
-    JLabel label = new JLabel(text);
-    label.setFont(font);
-    label.setForeground(new Color(93,212,49));
-    label.setBackground(Color.BLACK);
-    return label;
+    /**
+     * Class defining the button costumizations used throughout the game 
+     */
+    private class CustomButton extends JButton{
+        /**
+         * Constructor for the CustomButton class
+         * @param text The button's text
+         * @param textSize the size of the button's text
+         * @param buttonSize the dimension of the button's box
+         */
+        private CustomButton(String text, int textSize, Dimension buttonSize){
+            super(text);
+            this.setFont(new CustomFontBold(textSize));
+            this.setForeground(new Color(93, 212, 49));
+            this.setBackground(Color.BLACK);
+            this.setPreferredSize(buttonSize);
+            this.setFocusPainted(false);
+            this.setBorderPainted(false);
+        }
     }
 
     /**
-    private class CustomButton extends JButton{
-    public CustomButton(String text, Dimension buttonSize, Font font){
-        super(CustomButton(text));
-    }
-
-    private static JButton CustomButton(String text){
-    JButton button = new JButton(text);
-    button.setPreferredSize(buttonSize);
-    button.setFont(font);
-    button.setForeground(Color.GREEN);
-    button.setBackground(Color.BLACK);
-    button.setPreferredSize(buttonSize);
-    button.setFocusPainted(false);
-    button.setBorderPainted(false);
-    return button;
-    }
-    }
-    */
-    
+     * Class defining the label costumizations used throughout the game
+     */
+    private class CustomLabel extends JLabel{
+        private CustomLabel(String text, int size){
+            super(text);
+            this.setFont(new CustomFontBold(size));
+            this.setForeground(new Color(93, 212, 49));
+            this.setBackground(Color.BLACK);
+        }
+    }    
 
     public static void main(String args[]){
         Window window = new Window();
