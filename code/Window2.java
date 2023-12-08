@@ -89,8 +89,8 @@ public void mainMenu(){
 
         // Buttons Panel
         JPanel buttonPanel = new JPanel(new FlowLayout());
-        buttonPanel.add(newGame);
         buttonPanel.add(quit);
+        buttonPanel.add(newGame);
         buttonPanel.setBackground(Color.BLACK);
 
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
@@ -118,10 +118,10 @@ public void mainMenu(){
         JTextField nameField = new JTextField(30);
         nameField.setPreferredSize(new Dimension(100, 50));
         nameField.setBackground(Color.BLACK);
-        nameField.setForeground(Color.GREEN);
+        nameField.setForeground(new Color(93,212,49));
 
         // Button 
-        JButton accept=setupButton("Accept", new Dimension(150, 50),  new CustomFontBold(25));
+        JButton accept=setupButton("Accept", new Dimension(200, 50),  new CustomFontBold(25));
         accept.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -173,7 +173,7 @@ public void mainMenu(){
         int nOption = optionArray.size();
         for(int idx = 0; idx < nOption; idx++){
             Option opt = optionArray.get(idx);
-            JButton optButton=setupButton("<html><center>" + opt.getOptionText() + "</center></html>", buttonDimension, new CustomFontBold(20));
+            JButton optButton = setupButton("<html><center>" + opt.getOptionText() + "</center></html>", buttonDimension, new CustomFontBold(20));
             
             optButton.addActionListener(new ActionListener() {
                 @Override
@@ -204,18 +204,18 @@ public void mainMenu(){
         // Labels
         JLabel correctLabel= new JLabel();
         if(correct == true){
-            correctLabel = setupLabel("CORRECT!", new Font("Roboto", Font.BOLD, 50));
-            correctLabel.setForeground(Color.GREEN);
+            correctLabel = setupLabel("CORRECT!", new CustomFontBold(50));
+            correctLabel.setForeground(new Color(93,212,49));
         }
         else{
-            correctLabel = setupLabel("INCORRECT!", new Font("Roboto", Font.BOLD, 50));
+            correctLabel = setupLabel("INCORRECT!", new CustomFontBold(50));
             correctLabel.setForeground(Color.RED);
         }
         JLabel quickFactLabel = setupLabel("<html><p>Quick Fact: " + quickFact + "</p></html>", new CustomFontBold(30));
         quickFactLabel.setPreferredSize(new Dimension(100, 100));
     
         // Button
-        JButton nextButton=setupButton("NEXT", new Dimension(20, 80), new CustomFontBold(30));
+        JButton nextButton = setupButton("NEXT", new Dimension(20, 80), new CustomFontBold(30));
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -650,7 +650,8 @@ public void mainMenu(){
         
         private static Font loadFont(int size){
             try{
-                Font base = Font.createFont(Font.TRUETYPE_FONT, new File("gamefiles" + File.separator + "mono.ttf"));
+                Font base = Font.createFont(Font.TRUETYPE_FONT, new File("gamefiles" + File.separator + "ibmbiosfont.ttf"));
+                GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(base);
                 return base.deriveFont(Font.BOLD, size);
             }
             catch(IOException | FontFormatException e){
@@ -665,7 +666,7 @@ private JButton setupButton(String text, Dimension buttonSize, Font font){
     JButton button = new JButton(text);
     button.setText(text);
     button.setFont(font);
-    button.setForeground(Color.GREEN);
+    button.setForeground(new Color(93,212,49));
     button.setBackground(Color.BLACK);
     button.setPreferredSize(buttonSize);
     button.setFocusPainted(false);
@@ -687,7 +688,7 @@ private JButton setupButton(String text, Font font){
 private JLabel setupLabel(String text, Font font){
     JLabel label = new JLabel(text);
     label.setFont(font);
-    label.setForeground(Color.GREEN);
+    label.setForeground(new Color(93,212,49));
     label.setBackground(Color.BLACK);
     return label;
 }

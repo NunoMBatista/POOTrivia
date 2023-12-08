@@ -15,3 +15,5 @@ pootrivia_jogo_081220231223_NN.dat
 pootrivia_jogo_081220231226_NN.dat
 pootrivia_jogo_081220231242_NN.dat
 pootrivia_jogo_081220231243_NN.dat
+pootrivia_jogo_081220231508_NN.dat
+pootrivia_jogo_081220231528_NN.dat
