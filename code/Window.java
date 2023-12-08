@@ -243,13 +243,7 @@ public class Window extends JFrame{
         clearFrame();
         fileManager.storeGame(game);
         ArrayList<TriviaGame> games = fileManager.readGames();
-        for(TriviaGame game: games){
-            System.out.println(game.getName());
-        }
         ArrayList<TriviaGame> topGames = fileManager.getTop(games);
-        for(TriviaGame topgame: topGames){
-            System.out.println(topgame.getName());
-        }
 
         // Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -334,6 +328,7 @@ public class Window extends JFrame{
      * Class defining the button costumizations used throughout the game 
      */
     private class CustomButton extends JButton{
+        Color buttonColor = new Color (93, 212, 49);
         /**
          * Constructor for the CustomButton class
          * @param text The button's text
@@ -343,13 +338,23 @@ public class Window extends JFrame{
         private CustomButton(String text, int textSize, Dimension buttonSize){
             super(text);
             this.setFont(new CustomFontBold(textSize));
-            this.setForeground(new Color(93, 212, 49));
+            this.setForeground(buttonColor);
             this.setBackground(Color.BLACK);
             this.setPreferredSize(buttonSize);
             this.setFocusPainted(false);
+            this.setContentAreaFilled(false);
             this.setBorderPainted(false);
+            JButton button = this;
+            this.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent me) {
+                    button.setForeground(Color.GREEN);
+                }
+                public void mouseExited(MouseEvent me) {
+                    button.setForeground(buttonColor);
+                }
+                });
         }
-    }
+        }
 
     /**
      * Class defining the label costumizations used throughout the game

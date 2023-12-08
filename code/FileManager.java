@@ -87,7 +87,6 @@ public class FileManager {
 
         for(int i = 1; i < 6; i++){
             String[] playerSplit = playerStr[i].split("-");
-            System.out.println(playerSplit[0]);
             if(i > 1){
                 correct = false; 
             }
@@ -140,9 +139,7 @@ public class FileManager {
         try{
             FileOutputStream fos = new FileOutputStream(objFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            System.out.println("aaaa");
             oos.writeObject(game); // Writes the TriviaGame in the new file
-            System.out.println("bbbb");
             oos.close(); 
 
             FileWriter fw = new FileWriter(gamesFile, true);
