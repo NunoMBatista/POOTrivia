@@ -1,3 +1,9 @@
+/**
+ * @author Nuno Batista 
+ * @author Diogo Joaquim
+ * @version 1.0
+ */
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,6 +20,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Class used to manage the game files and player scores
+ */
 public class FileManager {
     /**
      * Method used to read options from the question's section in the questions file between two indices

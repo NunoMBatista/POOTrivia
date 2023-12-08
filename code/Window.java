@@ -290,7 +290,7 @@ public class Window extends JFrame{
         }
 
         /**
-         * Method remove the content from the frame
+         * Method used to remove the content from the frame
          */
         private void clearFrame() {
         this.getContentPane().removeAll();

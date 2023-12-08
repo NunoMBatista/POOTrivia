@@ -50,6 +50,10 @@ public class FootballQuestion extends Question{
         return updatedArray;
     }
 
+    /**
+     * Method used to make the game use the player's names
+     * @param 
+     */
     @Override
     protected void setEasyMode(int a){
         this.optionArray = playerToOption(false);
