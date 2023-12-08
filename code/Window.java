@@ -6,14 +6,11 @@
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
 import java.io.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -352,9 +349,9 @@ public class Window extends JFrame{
                 public void mouseExited(MouseEvent me) {
                     button.setForeground(buttonColor);
                 }
-                });
+            });
         }
-        }
+    }
 
     /**
      * Class defining the label costumizations used throughout the game

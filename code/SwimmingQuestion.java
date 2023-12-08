@@ -21,7 +21,12 @@ public class SwimmingQuestion extends Question{
        super(scoreValue, questionText, optionArray, quickFact);
    }
 
+    /**
+     * Method used to set the question to it's easy mode settings
+     * The swimming category's easy mode is the same as the regular one
+     */   
    protected void setEasyMode(int a){}; 
+
    /**
     * Method used to calculate the question's value
     * @return returns the question's value after the category boosts

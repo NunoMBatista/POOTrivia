@@ -31,7 +31,7 @@ public class ScienceQuestion extends Question{
 
     /**
      * Method used to set the question to it's easy mode settings
-     * The science category's easy mode swaps the regular option array 
+     * The science category's easy mode swaps the regular option set with an easier set of options 
      */
     @Override
     protected void setEasyMode(int a){
