@@ -9,7 +9,6 @@ import java.util.*;
 /**
 * Class used to manage swimming questions
 */
-
 public class SwimmingQuestion extends Question{
    /**
     * Constructor class for the SwimmingQuestiin class

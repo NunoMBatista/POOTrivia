@@ -372,8 +372,5 @@ public class Window extends JFrame{
         Window window = new Window();
         window.mainMenu();
     }
-
-
-
 }
   
