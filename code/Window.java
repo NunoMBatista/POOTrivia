@@ -340,7 +340,7 @@ public class Window extends JFrame{
          * @param buttonSize the dimension of the button's box
          */
         private CustomButton(String text, int textSize, Dimension buttonSize){
-            super(" " + text);
+            super("<html><center> " + text + "</center></html>");
             this.text = text;
             this.setFont(new CustomFontBold(textSize));
             this.setForeground(buttonColor);
