@@ -19,59 +19,59 @@ import java.util.*;
 /**
  * Class used to manage the game's graphical user interface
 */
-public class Window extends JFrame{
-    /**
-     * Defines the current stage of the game
-    */
-    int gameStage = 0; 
-    /**
-     * Contains the panel shown to the user 
-    */
-    JPanel panel;
-    /**
-     * Contains information about the current game beeing played
-    */
-    TriviaGame game = new TriviaGame(); 
+public class Window2 extends JFrame{
+/**
+ * Defines the current stage of the game
+*/
+int gameStage = 0; 
+/**
+ * Contains the panel shown to the user 
+*/
+JPanel panel;
+/**
+ * Contains information about the current game beeing played
+*/
+TriviaGame game = new TriviaGame(); 
 
-    /**
-     * Constructor class for the Window class
-    */
-    public Window(){
-        this.setTitle("POO Trivia");
-        this.setSize(800, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+/**
+ * Constructor class for the Window class
+*/
+public Window2(){
+    this.setTitle("POO Trivia");
+    this.setSize(800, 600);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+}
+
+/**
+ * Method used to display the main menu on the GUI
+*/
+public void mainMenu(){
+    JPanel mainPanel = new JPanel(new BorderLayout());
+    clearFrame();
+    // Image Panel
+    try{
+        BufferedImage logo = ImageIO.read(new File("gamefiles" + File.separator + "logo.png"));
+        JPanel imagePanel = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                g.drawImage(logo, 150, 150, 512, 121, rootPane);
+            }
+        };
+        imagePanel.setBackground(Color.BLACK);
+        mainPanel.add(imagePanel, BorderLayout.CENTER);
+
     }
- 
-    /**
-     * Method used to display the main menu on the GUI
-    */
-    public void mainMenu(){
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        clearFrame();
-        // Image Panel
-        try{
-            BufferedImage logo = ImageIO.read(new File("gamefiles" + File.separator + "logo.png"));
-            JPanel imagePanel = new JPanel(){
-                @Override
-                protected void paintComponent(Graphics g){
-                    super.paintComponent(g);
-                    g.drawImage(logo, 150, 150, 512, 121, rootPane);
-                }
-            };
-            mainPanel.add(imagePanel, BorderLayout.CENTER);
+    catch(IOException e){
+        System.out.println("Couldn't read the game's logo");
+    }        
 
-        }
-        catch(IOException e){
-            System.out.println("Couldn't read the game's logo");
-        }        
-
-        // Buttons
-        Font font = new CustomFontBold(30);
-        Dimension buttonSize = new Dimension(300, 100); 
-        JButton newGame = new JButton("New Game");
-        newGame.setFont(font);
-        newGame.setPreferredSize(buttonSize);
-        newGame.addActionListener(new ActionListener() {
+    // Buttons
+    Font font = new CustomFontBold(30);
+    Dimension buttonSize = new Dimension(300, 100); 
+    
+    JButton newGame=setupButton("New Game", buttonSize,  font);
+    newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 setupGame(game);
@@ -79,9 +79,7 @@ public class Window extends JFrame{
             }
         });
 
-        JButton quit = new JButton("Quit"); 
-        quit.setFont(new CustomFontBold(30));
-        quit.setPreferredSize(buttonSize);
+        JButton quit=setupButton("Quit", buttonSize,  font);
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -93,8 +91,11 @@ public class Window extends JFrame{
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.add(newGame);
         buttonPanel.add(quit);
+        buttonPanel.setBackground(Color.BLACK);
 
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+        mainPanel.setBackground(Color.BLACK);
+        mainPanel.setForeground(Color.BLACK);
         this.add(mainPanel);
         this.setVisible(true);
     }
@@ -107,20 +108,20 @@ public class Window extends JFrame{
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         // Label
-        JLabel label = new JLabel("Insert your name:");
-        label.setFont(new CustomFontBold(35));
+        JLabel label = setupLabel("Insert your name:", new CustomFontBold(35));
         JPanel labelPanel = new JPanel(new FlowLayout());
+        labelPanel.setBackground(Color.BLACK);
         labelPanel.add(label);
 
 
         // Text field
         JTextField nameField = new JTextField(30);
         nameField.setPreferredSize(new Dimension(100, 50));
+        nameField.setBackground(Color.BLACK);
+        nameField.setForeground(Color.GREEN);
 
         // Button 
-        JButton accept = new JButton("Accept");
-        accept.setPreferredSize(new Dimension(150, 50));
-        accept.setFont(new CustomFontBold(25));
+        JButton accept=setupButton("Accept", new Dimension(150, 50),  new CustomFontBold(25));
         accept.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,6 +137,7 @@ public class Window extends JFrame{
 
         // FlowLayout Panel
         JPanel secondayPanel = new JPanel(new FlowLayout(FlowLayout.CENTER)); 
+        secondayPanel.setBackground(Color.BLACK);
         secondayPanel.add(nameField);
         secondayPanel.add(accept);
         
@@ -159,10 +161,11 @@ public class Window extends JFrame{
         // Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setBackground(Color.BLACK);
+        mainPanel.setBackground(Color.BLACK);
 
         // Label 
-        JLabel questionText = new JLabel("<html><center> For " + currQuestion.getScoreValue() + " points!!<br>" + currQuestion.getText() + "</center></html>");
-        questionText.setFont(new CustomFontBold(30));
+        JLabel questionText = setupLabel("<html><center> For " + currQuestion.getScoreValue() + " points!!<br>" + currQuestion.getText() + "</center></html>", new CustomFontBold(30));
         
         // Buttons
         Dimension buttonDimension = new Dimension(200, 100);
@@ -170,9 +173,8 @@ public class Window extends JFrame{
         int nOption = optionArray.size();
         for(int idx = 0; idx < nOption; idx++){
             Option opt = optionArray.get(idx);
-            JButton optButton = new JButton("<html><center>" + opt.getOptionText() + "</center></html>");
+            JButton optButton=setupButton("<html><center>" + opt.getOptionText() + "</center></html>", buttonDimension, new CustomFontBold(20));
             
-            optButton.setFont(new CustomFontBold(20));
             optButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e){
@@ -180,7 +182,6 @@ public class Window extends JFrame{
                     afterQuestion(opt.correct, currQuestion.getQuickFact());
                 }
             });
-            optButton.setPreferredSize(buttonDimension);
             buttonPanel.add(optButton);
         }
 
@@ -189,7 +190,7 @@ public class Window extends JFrame{
         this.add(mainPanel);
         this.setVisible(true);
     }
- 
+
     /**
      * Method used to present a screen informing the player if the option they chose is the correct one
     * as well as a quick fact about the question itself
@@ -201,24 +202,20 @@ public class Window extends JFrame{
         clearFrame();
 
         // Labels
-        JLabel correctLabel = new JLabel();
+        JLabel correctLabel= new JLabel();
         if(correct == true){
-        correctLabel.setText("CORRECT!");
-        correctLabel.setForeground(Color.GREEN);
+            correctLabel = setupLabel("CORRECT!", new Font("Roboto", Font.BOLD, 50));
+            correctLabel.setForeground(Color.GREEN);
         }
         else{
-            correctLabel.setText("INCORRECT!");
-        correctLabel.setForeground(Color.RED);
+            correctLabel = setupLabel("INCORRECT!", new Font("Roboto", Font.BOLD, 50));
+            correctLabel.setForeground(Color.RED);
         }
-        correctLabel.setFont(new Font("Roboto", Font.BOLD, 50));
-        JLabel quickFactLabel = new JLabel();
-        quickFactLabel.setText("<html><p>Quick Fact: " + quickFact + "</p></html>");
+        JLabel quickFactLabel = setupLabel("<html><p>Quick Fact: " + quickFact + "</p></html>", new CustomFontBold(30));
         quickFactLabel.setPreferredSize(new Dimension(100, 100));
-        quickFactLabel.setFont(new CustomFontBold(30));
     
         // Button
-        JButton nextButton = new JButton("NEXT");
-        nextButton.setPreferredSize(new Dimension(20, 80));
+        JButton nextButton=setupButton("NEXT", new Dimension(20, 80), new CustomFontBold(30));
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -234,16 +231,17 @@ public class Window extends JFrame{
 
         // Panel 
         JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(Color.BLACK);
         mainPanel.add(correctLabel, BorderLayout.NORTH);
         mainPanel.add(nextButton, BorderLayout.SOUTH);
         mainPanel.add(quickFactLabel, BorderLayout.CENTER);
         this.add(mainPanel);
         this.setVisible(true);
     }
- 
-     /**
-      * Method used to present to the player their score as well as the 3 best scores of the games previously played
-      */
+
+    /**
+     * Method used to present to the player their score as well as the 3 best scores of the games previously played
+     */
     private void endGame(){
         clearFrame();
         storeGame(game);
@@ -259,28 +257,28 @@ public class Window extends JFrame{
         // Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel topScoresPanel = new JPanel(new GridLayout(3, 1));
+        topScoresPanel.setBackground(Color.BLACK);
         JPanel newGamePanel = new JPanel(new FlowLayout());
+        newGamePanel.setBackground(Color.BLACK);
         JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.setBackground(Color.BLACK);
         // Labels
         for(int i = 0; i < topGames.size(); i++){
             TriviaGame curGame = topGames.get(i);
-            JLabel gameLabel = new JLabel("<html><center>" + (i+1) + " -> " + curGame.getName() + " with score: " + curGame.calculateTotalScore() + " [" + (curGame.getDateTime()).substring(0, 2) + "/" + (curGame.getDateTime()).substring(2, 4) + "/" + (curGame.getDateTime()).substring(4, 8) + " - " + (curGame.getDateTime()).substring(8, 10) + ":" + (curGame.getDateTime()).substring(10, 12) + "]</center></html>");
-            gameLabel.setFont(new CustomFontBold(25));
+            JLabel gameLabel = setupLabel("<html><center>" + (i+1) + " -> " + curGame.getName() + " with score: " + curGame.calculateTotalScore() + " [" + (curGame.getDateTime()).substring(0, 2) + "/" + (curGame.getDateTime()).substring(2, 4) + "/" + (curGame.getDateTime()).substring(4, 8) + " - " + (curGame.getDateTime()).substring(8, 10) + ":" + (curGame.getDateTime()).substring(10, 12) + "]</center></html>", new CustomFontBold(25));
             topScoresPanel.add(gameLabel);
         }
-        JLabel newGame = new JLabel("<html><center> You got " + game.calculateTotalScore() + " points!</center></html>");
+        JLabel newGame = setupLabel("<html><center> You got " + game.calculateTotalScore() + " points!</center></html>", new CustomFontBold(25));
 
         // Buttons 
-        JButton playAgain = new JButton("Play Again");
-        playAgain.setFont(new CustomFontBold(30));
+        JButton playAgain=setupButton("Play Again", new CustomFontBold(30));
         playAgain.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 gameStage = 0;
                 mainMenu();
             }
         });
-        JButton quit = new JButton("Quit");
-        quit.setFont(new CustomFontBold(30));
+        JButton quit=setupButton("Quit", new CustomFontBold(30));
         quit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 System.exit(0);
@@ -298,23 +296,23 @@ public class Window extends JFrame{
         this.add(mainPanel);
         this.setVisible(true);
     }
- 
-     /**
-      * Method remove the content from the frame
-      */
+
+    /**
+     * Method remove the content from the frame
+     */
     private void clearFrame() {
         this.getContentPane().removeAll();
         this.revalidate();
         this.repaint();
     }
- 
-     /**
-      * Method used to read options from the question's section in the questions file between two indices
-      * @param startingIdx the index in which to start reading
-      * @param endingIdx the index in which to stop reading
-      * @param optionStr the option string array from which to extract the options
-      * @return optionArray the new option array
-      */
+
+    /**
+     * Method used to read options from the question's section in the questions file between two indices
+     * @param startingIdx the index in which to start reading
+     * @param endingIdx the index in which to stop reading
+     * @param optionStr the option string array from which to extract the options
+     * @return optionArray the new option array
+     */
     private ArrayList<Option> readOptions (int startingIdx, int endingIdx, String[] optionStr){
         ArrayList<Option> optionArray = new ArrayList<>();
         boolean correct = true; // The first option is always correct
@@ -328,13 +326,13 @@ public class Window extends JFrame{
         }
         return optionArray;
     }
- 
-     /**
-      * Method used to read an arts question from the question's file and initialize a new ArtsQuestion object accordingly
-      * @param questionText The question's text
-      * @param str The question's score, options and the quick fact
-      * @return a new ArtsQuestion object
-      */
+
+    /**
+     * Method used to read an arts question from the question's file and initialize a new ArtsQuestion object accordingly
+     * @param questionText The question's text
+     * @param str The question's score, options and the quick fact
+     * @return a new ArtsQuestion object
+     */
     private Question artsParsing(String questionText, String str){
         String[] optionStr = str.split(";");
 
@@ -346,12 +344,12 @@ public class Window extends JFrame{
         return new ArtsQuestion(score, questionText, optionArray, quickFact);
     }
 
-     /**
-      * Method used to read a science question from the question's file and initialize a new ScienceQuestion object accordingly
-      * @param questionText The question's text
-      * @param str The question's score, regular options, easy options and the quick fact
-      * @return a new ScienceQuestion object
-      */
+    /**
+     * Method used to read a science question from the question's file and initialize a new ScienceQuestion object accordingly
+     * @param questionText The question's text
+     * @param str The question's score, regular options, easy options and the quick fact
+     * @return a new ScienceQuestion object
+     */
     private Question scienceParsing(String questionText, String str){
         String[] optionStr = str.split(";"); 
         
@@ -365,12 +363,12 @@ public class Window extends JFrame{
         return new ScienceQuestion(score, questionText, normalOptionArray, easyOptionArray, quickFact);
     }
 
-     /**
-      * Method used to read a football question from the question's file and initializes a new FootballQuestion object accordingly
-      * @param questionText The question's text
-      * @param str The question's score, football player's shirt numbers and names and the quick fact
-      * @return a new FootballQuestion object
-      */
+    /**
+     * Method used to read a football question from the question's file and initializes a new FootballQuestion object accordingly
+     * @param questionText The question's text
+     * @param str The question's score, football player's shirt numbers and names and the quick fact
+     * @return a new FootballQuestion object
+     */
     private Question footballParsing(String questionText, String str){
         ArrayList<FootballPlayer> playerArray = new ArrayList<>();
         String[] playerStr = str.split(";");
@@ -392,13 +390,13 @@ public class Window extends JFrame{
         return new FootballQuestion(score, questionText, new ArrayList<>(), playerArray, quickFact);
     }
 
-     /**
-      * Method used to read a question with boolean values as options from the questions file i.e. ski and swimming and initializes a new Question object accordingly
-      * @param questionText The question's text
-      * @param str The question's score, boolean value and the quick fact
-      * @param category The question's category 
-      * @return a new SkiQuestion or SwimmingQuestion Object
-      */
+    /**
+     * Method used to read a question with boolean values as options from the questions file i.e. ski and swimming and initializes a new Question object accordingly
+     * @param questionText The question's text
+     * @param str The question's score, boolean value and the quick fact
+     * @param category The question's category 
+     * @return a new SkiQuestion or SwimmingQuestion Object
+     */
     private Question booleanParsing(String questionText, String str, char category){
         ArrayList<Option> optionArray = new ArrayList<>(); 
         String[] optionStr = str.split(";");
@@ -421,11 +419,11 @@ public class Window extends JFrame{
         }
         return new SwimmingQuestion(score, questionText, optionArray, quickFact);
     }
- 
-     /**
-      * Method used at the end of a game to store the game's data
-      * @param game the game 
-      */
+
+    /**
+     * Method used at the end of a game to store the game's data
+     * @param game the game 
+     */
     private void storeGame(TriviaGame game){
         String fileName = game.constructObjectFileName(); // Gets the name of the file in which the data will be stored
         File objFile = new File("gamefiles" + File.separator + fileName); // Creates new file to store the TriviaGame object
@@ -451,11 +449,11 @@ public class Window extends JFrame{
             System.out.println("Error: data not written");
         }
     }
- 
-     /**
-      * Method used to read the data from the previously played games
-      * @return a new ArrayList containing every game played so far
-      */
+
+    /**
+     * Method used to read the data from the previously played games
+     * @return a new ArrayList containing every game played so far
+     */
     private ArrayList<TriviaGame> readGames(){
         ArrayList<TriviaGame> games = new ArrayList<>(); 
         File gamesFile = new File("gamefiles" + File.separator + "gamesplayed.txt"); // Opens the text file containing the name of every TriviaGame file
@@ -492,12 +490,12 @@ public class Window extends JFrame{
 
         return games;
     }
- 
-     /**
-      * Method used to determine the 3 players with the best scores so far
-      * @param games An ArrayList containing every game played so far
-      * @return an ArrayList with the 3 best games so far
-      */
+
+    /**
+     * Method used to determine the 3 players with the best scores so far
+     * @param games An ArrayList containing every game played so far
+     * @return an ArrayList with the 3 best games so far
+     */
     private ArrayList<TriviaGame> getTop(ArrayList<TriviaGame> games){
         int nGames = games.size(); // Number of games played
         int[] scoreIndices = new int[nGames + 1]; // Paralel int array keeping track of the scores from the game i
@@ -542,11 +540,11 @@ public class Window extends JFrame{
 
         return topGames;
     }
- 
-     /**
-      * Method used to setup the current game, setting it's asked questions, the player's name, the current date/time
-      * @param game the TriviaGame object where the game's information will be stored
-      */
+
+    /**
+     * Method used to setup the current game, setting it's asked questions, the player's name, the current date/time
+     * @param game the TriviaGame object where the game's information will be stored
+     */
     private void setupGame(TriviaGame game){
         // Load the questions from pootrivia.txt to questionArray
         File questionsFile = new File("gamefiles" + File.separator + "pootrivia.txt");
@@ -640,12 +638,12 @@ public class Window extends JFrame{
 
     /**
      * Class defining the font used throughout the game (with bold)
-     */
+    */
     private class CustomFontBold extends Font{
         /**
          * Constructor for the class CustomFont
-         * @param size Contains the font's size
-         */
+        * @param size Contains the font's size
+        */
         private CustomFontBold(int size){
             super(loadFont(size));
         }
@@ -662,12 +660,63 @@ public class Window extends JFrame{
             return new Font("Serif", Font.PLAIN, size); 
         }
     }
+
+private JButton setupButton(String text, Dimension buttonSize, Font font){
+    JButton button = new JButton(text);
+    button.setText(text);
+    button.setFont(font);
+    button.setForeground(Color.GREEN);
+    button.setBackground(Color.BLACK);
+    button.setPreferredSize(buttonSize);
+    button.setFocusPainted(false);
+    button.setBorderPainted(false);
+    return button;
+}
+
+private JButton setupButton(String text, Font font){
+    JButton button = new JButton(text);
+    button.setText(text);
+    button.setFont(font);
+    button.setForeground(Color.GREEN);
+    button.setBackground(Color.BLACK);
+    button.setFocusPainted(false);
+    button.setBorderPainted(false);
+    return button;
+}
+
+private JLabel setupLabel(String text, Font font){
+    JLabel label = new JLabel(text);
+    label.setFont(font);
+    label.setForeground(Color.GREEN);
+    label.setBackground(Color.BLACK);
+    return label;
+}
+
+/**
+private class CustomButton extends JButton{
+    public CustomButton(String text, Dimension buttonSize, Font font){
+        super(CustomButton(text));
+    }
+
+    private static JButton CustomButton(String text){
+    JButton button = new JButton(text);
+    button.setPreferredSize(buttonSize);
+    button.setFont(font);
+    button.setForeground(Color.GREEN);
+    button.setBackground(Color.BLACK);
+    button.setPreferredSize(buttonSize);
+    button.setFocusPainted(false);
+    button.setBorderPainted(false);
+    return button;
+    }
+}
+*/
     
 
     public static void main(String args[]){
-        Window window = new Window();
+        Window2 window = new Window2();
         window.mainMenu();
     }
- 
+
 }
- 
+  
