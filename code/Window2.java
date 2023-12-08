@@ -95,7 +95,6 @@ public void mainMenu(){
 
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         mainPanel.setBackground(Color.BLACK);
-        mainPanel.setForeground(Color.BLACK);
         this.add(mainPanel);
         this.setVisible(true);
     }
