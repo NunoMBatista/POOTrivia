@@ -168,7 +168,7 @@ public class Window extends JFrame{
         int nOption = optionArray.size();
         for(int idx = 0; idx < nOption; idx++){
             Option opt = optionArray.get(idx);
-            CustomButton optButton = new CustomButton("<html><center>" + opt.getOptionText() + "</center></html>", 15, buttonSize);
+            CustomButton optButton = new CustomButton(opt.getOptionText(), 15, buttonSize);
             
             optButton.addActionListener(new ActionListener() {
                 @Override
@@ -325,6 +325,13 @@ public class Window extends JFrame{
      * Class defining the button costumizations used throughout the game 
      */
     private class CustomButton extends JButton{
+        /**
+         * Defines the content of the button
+         */
+        String text;
+        /**
+         * Defines the collor of the button
+         */
         Color buttonColor = new Color (93, 212, 49);
         /**
          * Constructor for the CustomButton class
@@ -333,7 +340,8 @@ public class Window extends JFrame{
          * @param buttonSize the dimension of the button's box
          */
         private CustomButton(String text, int textSize, Dimension buttonSize){
-            super(text);
+            super(" " + text);
+            this.text = text;
             this.setFont(new CustomFontBold(textSize));
             this.setForeground(buttonColor);
             this.setBackground(Color.BLACK);
@@ -345,9 +353,11 @@ public class Window extends JFrame{
             this.addMouseListener(new MouseAdapter() {
                 public void mouseEntered(MouseEvent me) {
                     button.setForeground(Color.GREEN);
+                    button.setText("<html><center>>" + text + "</center></html>");
                 }
                 public void mouseExited(MouseEvent me) {
                     button.setForeground(buttonColor);
+                    button.setText("<html><center>" + text + "</center></html>");
                 }
             });
         }
