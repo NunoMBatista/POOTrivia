@@ -163,7 +163,7 @@ public class Window extends JFrame{
         CustomLabel questionText = new CustomLabel("<html><center> For " + currQuestion.getScoreValue() + " points!!<br>" + currQuestion.getText() + "</center></html>", 30);
 
         // Buttons
-        Dimension buttonSize = new Dimension(200, 100);
+        Dimension buttonSize = new Dimension(250, 200);
         ArrayList<Option> optionArray = currQuestion.getOptionArray();
         int nOption = optionArray.size();
         for(int idx = 0; idx < nOption; idx++){
@@ -357,7 +357,7 @@ public class Window extends JFrame{
                 }
                 public void mouseExited(MouseEvent me) {
                     button.setForeground(buttonColor);
-                    button.setText("<html><center>" + text + "</center></html>");
+                    button.setText("<html><center> " + text + "</center></html>");
                 }
             });
         }
