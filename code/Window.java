@@ -325,10 +325,6 @@ public class Window extends JFrame{
      */
     private class CustomButton extends JButton{
         /**
-         * Defines the content of the button
-         */
-        private String text;
-        /**
          * Defines the collor of the button
          */
         private Color buttonColor = new Color (93, 212, 49);
@@ -340,7 +336,6 @@ public class Window extends JFrame{
          */
         private CustomButton(String text, int textSize, Dimension buttonSize){
             super("<html><center> " + text + "</center></html>");
-            this.text = text;
             this.setFont(new CustomFontBold(textSize));
             this.setForeground(buttonColor);
             this.setBackground(Color.BLACK);
