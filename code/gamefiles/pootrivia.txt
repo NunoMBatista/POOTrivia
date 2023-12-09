@@ -62,6 +62,6 @@ Did Michael Phelps win over 30 olympic medals?
 @3
 3;false;Michael Phelps "only" managed to get 28 medals in total, 23 of which are gold.
 
-Did Rui Mamede, the swimmer from Coimbra, break the world record for the long course 50-metre butterfly?
+Did Rui Mamede, the swimmer from Coimbra, break the world record for the long course 50-meter butterfly?
 @3
-3;false;Diogo Ribeiro, who broke the world record for the long course 50-metre butterfly is originially from the city of Coimbra.
+3;false;Diogo Ribeiro, who broke the world record for the long course 50-meter butterfly is originially from the city of Coimbra.
