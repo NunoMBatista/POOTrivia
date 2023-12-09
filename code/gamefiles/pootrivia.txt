@@ -52,7 +52,7 @@ Which one of these players was criticized for stepping on an adversary's hand du
 
 Is binding the name of the device that attaches a skier's feet to the ski?
 @2
-3;true;The ski binding started as a mere lether strap fastened over the toe of the boot.
+3;true;The ski binding started as a mere leather strap fastened over the toe of the boot.
 
 Is the Big Sky Resort the biggest skiing area in the world?
 @2
