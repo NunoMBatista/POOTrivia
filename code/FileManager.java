@@ -62,7 +62,6 @@ public class FileManager {
 
         int score = Integer.parseInt(optionStr[0]); // Read the score value
 
-
         ArrayList<Option> normalOptionArray = readOptions(1, 6, optionStr); // Initialize the normal options array
         ArrayList<Option> easyOptionArray = readOptions(6, 11, optionStr); // Initialize the easy options array
 
