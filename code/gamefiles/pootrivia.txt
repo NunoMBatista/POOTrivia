@@ -38,9 +38,9 @@ Which one of these players have been nicknamed "A Pantera Negra"?
 @1
 3;Eusébio Ferreira-10;Cristiano Ronaldo-7;Ederzito António-9;Ricardo Quaresma-20;Pepe-3;Eusébio, the legendary footballer earned many nicknames throughout history, including: "A Pantera Negra", "A Pérola Negra" and "O Rei".
 
-Which one of these players was criticized for stepping on Messi's hand during a match?
+Which one of these players was criticized for stepping on an adversary's hand during a match?
 @1
-3;Pepe-3;Cristiano Ronaldo-7;Zlatan Ibrahimović-11;Rúben Neves-8;Neymar-10;Pepe was criticized for his bad behaviour during 2012's King's Cup quarter-final, such as his overly theatrical beahviour on an earlier tackle and for purposely stepping on an adversary's hand while he was laying on the ground.
+3;Pepe-3;Cristiano Ronaldo-7;Zlatan Ibrahimović-11;Rúben Neves-8;Neymar-10;Pepe was criticized for his bad behaviour during 2012's King's Cup quarter-final, such as his overly theatrical beahviour on an earlier tackle and for purposely stepping on Messi's hand while he was laying on the ground.
 
 Is binding the name of the device that attaches a skier's feet to the ski?
 @2
