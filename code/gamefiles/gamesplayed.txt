@@ -6,3 +6,4 @@ pootrivia_jogo_091220231853_FC.dat
 pootrivia_jogo_091220231854_NB.dat
 pootrivia_jogo_091220231855_WH.dat
 pootrivia_jogo_091220231901_NB.dat
+pootrivia_jogo_091220231914_NB.dat

@@ -309,7 +309,9 @@ public class Window extends JFrame{
 
         private static Font loadFont(int size){
             try{
+                // Creates custom font based on the given file path
                 Font base = Font.createFont(Font.TRUETYPE_FONT, new File("gamefiles" + File.separator + "ibmbiosfont.ttf"));
+                // Registers the font in the java.awt.GraphicsEnvironment class so it can be used with html formating
                 GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(base);
                 return base.deriveFont(Font.BOLD, size);
             }
