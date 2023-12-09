@@ -17,7 +17,7 @@ import java.util.*;
  * Class used to manage the game's graphical user interface
 */
 public class Window extends JFrame{
-    FileManager fileManager = new FileManager();
+    protected FileManager fileManager = new FileManager();
     /**
      * Defines the current stage of the game
     */
