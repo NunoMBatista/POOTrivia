@@ -34,13 +34,29 @@ In The Big Bang Theory, what's Sheldon Cooper's most famous phrase?
 &
 1;Bazinga;Bazooka;Bangladesh;Brofist;Bazófias;Bing Chilling;Sheldon Cooper uses the term bazinga throughout the show at the end of jokes or pranks to indicate sarcasm.
 
+Which one of these bands is australian?
+&
+3;AC/DC;Aerosmith;Pink Floyd;ZZ Top;Belle Chase Hotel;The Black Keys;AC/DC was initially created in Sidney but over time due to the death of it's members it is now composed of moslty non-Australian musicians.
+
+Which one of these bands was formed in Coimbra?
+&
+3;Belle Chase Hotel;Taxi;Cassete Pirata;Ornatos Violeta;X-Wife;Xutos e Pontapés;Belle Chase Hotel, the band from Coimbra, went silent after their performances in 2003, but they came back in 2022 to release 2 new songs Keith Moon and (We're Not) Searching For The Real Thing.
+
 Which one of these players have been nicknamed "A Pantera Negra"?
 @1
 3;Eusébio Ferreira-10;Cristiano Ronaldo-7;Ederzito António-9;Ricardo Quaresma-20;Pepe-3;Eusébio, the legendary footballer earned many nicknames throughout history, including: "A Pantera Negra", "A Pérola Negra" and "O Rei".
 
+Which one of these players was criticized for stepping on an adversary's hand during a match?
+@1
+3;Pepe-3;Cristiano Ronaldo-7;Zlatan Ibrahimović-11;Rúben Neves-8;Neymar-10;Pepe was criticized for his bad behaviour during 2012's King's Cup quarter-final, such as his overly theatrical beahviour on an earlier tackle and for purposely stepping on Messi's hand while he was laying on the ground.
+
 Is binding the name of the device that attaches a skier's feet to the ski?
 @2
 3;true;The ski binding started as a mere lether strap fastened over the toe of the boot.
+
+Is the Big Sky Resort the biggest skiing area in the world?
+@2
+3;false; the biggest skiing area in the world is Les 3 Vallées, Big Sky Resort is the biggest skiing resort in America.
 
 Did Michael Phelps win over 30 olympic medals?
 @3
