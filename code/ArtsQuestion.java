@@ -33,7 +33,7 @@ public class ArtsQuestion extends Question {
         int addedQuestions = 0;
         // Checks if the correct option has already been selected
         boolean addedCorrect = false;
-      
+        
         // Iterates through the option array in order to extract the correct option
         // as well as howMany - 1 other options
         for(Option option: this.optionArray){
@@ -41,17 +41,17 @@ public class ArtsQuestion extends Question {
                 updatedArray.add(option);
                 // If the correct option is added, update the addedCorrect value accordingly
                 addedCorrect = true;
+                //addedQuestions += 1;
             }
-            else if(addedQuestions < howMany){
+            else if(addedQuestions < howMany - 1){
                 updatedArray.add(option);
+                addedQuestions += 1;
             }
-            
             // Increments the option counter every time an option is added
-            addedQuestions += 1;
 
             // The loop will end as soon as the correct option is added along side 
             // alongside howMany - 1 other options
-            if((addedCorrect == true) && (addedQuestions == howMany)){
+            if((addedCorrect == true) && (addedQuestions == howMany-1)){
                 break;
             }
         }

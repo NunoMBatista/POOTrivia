@@ -40,7 +40,7 @@ Which one of these bands is australian?
 
 Which one of these bands was formed in Coimbra?
 &
-22;Belle Chase Hotel;Taxi;Cassete Pirata;Ornatos Violeta;X-Wife;Xutos e Pontapés;Belle Chase Hotel, the band from Coimbra, went silent after their performances in 2003, but they came back in 2022 to release 2 new songs Keith Moon and (We're Not) Searching For The Real Thing.
+2;Belle Chase Hotel;Taxi;Cassete Pirata;Ornatos Violeta;X-Wife;Xutos e Pontapés;Belle Chase Hotel, the band from Coimbra, went silent after their performances in 2003, but they came back in 2022 to release 2 new songs Keith Moon and (We're Not) Searching For The Real Thing.
 
 Which one of these players have been nicknamed "A Pantera Negra"?
 @1
