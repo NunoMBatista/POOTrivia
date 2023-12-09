@@ -43,7 +43,7 @@ public class Window extends JFrame{
     /**
      * Method used to display the main menu on the GUI
     */
-    public void mainMenu(){
+    private void mainMenu(){
         JPanel mainPanel = new JPanel(new BorderLayout());
         clearFrame();
         // Image Panel
@@ -96,7 +96,7 @@ public class Window extends JFrame{
     /**
      * Method used to present to the player a screen asking for their name
     */
-    public void getPlayerName(){
+    private void getPlayerName(){
         clearFrame();
         JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -144,7 +144,7 @@ public class Window extends JFrame{
     /**
      * Method used to display the current question being asked as well as it's options
     */
-    public void loadQuestion(){
+    private void loadQuestion(){
         Question currQuestion = game.askedQuestions.get(gameStage);
         if(gameStage < 2){
             currQuestion.setEasyMode(3);    
@@ -327,11 +327,11 @@ public class Window extends JFrame{
         /**
          * Defines the content of the button
          */
-        String text;
+        private String text;
         /**
          * Defines the collor of the button
          */
-        Color buttonColor = new Color (93, 212, 49);
+        private Color buttonColor = new Color (93, 212, 49);
         /**
          * Constructor for the CustomButton class
          * @param text The button's text
