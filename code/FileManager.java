@@ -202,9 +202,6 @@ public class FileManager {
      */
     protected ArrayList<TriviaGame> getTop(ArrayList<TriviaGame> games){
         int nGames = games.size(); // Number of games played
-        int[] scoreIndices = new int[nGames + 1]; // Paralel int array keeping track of the scores from the game i
-
-        scoreIndices[nGames] = -1; // The last is a dummy element so that the first, second and third indices start at a negative value
         
         // Indices of the best, second best and third best games (they start at score -1)
                 

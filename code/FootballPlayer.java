@@ -4,12 +4,10 @@
  * @version 1.0
  */
 
-import java.io.Serializable;
-
 /**
  * Class used to manage football player options
  */
-public class FootballPlayer implements Serializable{
+public class FootballPlayer extends Option{
     /**
      * The name of the player
      */
@@ -18,10 +16,6 @@ public class FootballPlayer implements Serializable{
      * The player's shirt number
      */
     protected String shirtNumber;
-    /**
-     * Defines if the option is correct
-     */ 
-    protected boolean correct; 
 
     /**
      * Constructor class for the FootballPlayer class
@@ -34,4 +28,37 @@ public class FootballPlayer implements Serializable{
         this.shirtNumber = shirtNumber;
         this.correct = correct; 
     }
+
+    /**
+     * Method used to get the football player's name
+     * @return the football player's name
+     */
+    public String getName(){
+        return this.name;
+    }
+
+    /**
+     * Method used to get the football player's shirt number
+     * @return the football player's shirt number
+     */
+    public String getNumber(){
+        return this.shirtNumber;
+    }
+
+    /**
+     * Method used to set the football player's name
+     * @param name the football player's name
+     */    
+    public void setName(String name){
+        this.name = name;
+    }
+
+    /**
+     * Method used to set the football player's shirt number
+     * @param number the football player's shirt number
+     */
+    public void setNumber(String number){
+        this.shirtNumber = number;
+    }
+
 }

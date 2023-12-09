@@ -13,7 +13,7 @@ public class FootballQuestion extends Question{
     /**
      * Contains the later to be converted to options players
      */
-    ArrayList<FootballPlayer> playerArray = new ArrayList<>();
+    protected ArrayList<FootballPlayer> playerArray = new ArrayList<>();
 
     /**
      * Constructor for the FootballQuestion class
@@ -79,7 +79,7 @@ public class FootballQuestion extends Question{
      * Method used to set the question's player array
      * @param playerArray the question's player array
      */
-    public void setPlayerList(ArrayList<FootballPlayer> playerArray){
+    public void setPlayerArray(ArrayList<FootballPlayer> playerArray){
         this.playerArray = playerArray;
     }
 
