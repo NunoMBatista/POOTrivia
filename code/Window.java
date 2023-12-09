@@ -21,15 +21,15 @@ public class Window extends JFrame{
     /**
      * Defines the current stage of the game
     */
-    int gameStage = 0; 
+    protected int gameStage = 0; 
     /**
      * Contains the panel shown to the user 
     */
-    JPanel panel;
+    protected JPanel panel;
     /**
      * Contains information about the current game beeing played
     */
-    TriviaGame game = new TriviaGame(); 
+    protected TriviaGame game = new TriviaGame(); 
 
     /**
      * Constructor class for the Window class
