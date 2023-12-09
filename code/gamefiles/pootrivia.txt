@@ -46,6 +46,10 @@ Is binding the name of the device that attaches a skier's feet to the ski?
 @2
 3;true;The ski binding started as a mere lether strap fastened over the toe of the boot.
 
+Is the Big Sky Resort the biggest skiing area in the world?
+@2
+3;false; the biggest skiing area in the world is Les 3 Vallées, Big Sky Resort is the biggest skiing resort in America.
+
 Did Michael Phelps win over 30 olympic medals?
 @3
 3;false;Michael Phelps "only" managed to get 28 medals in total, 23 of which are gold.
