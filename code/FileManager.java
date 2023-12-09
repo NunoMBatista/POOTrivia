@@ -205,40 +205,47 @@ public class FileManager {
         int[] scoreIndices = new int[nGames + 1]; // Paralel int array keeping track of the scores from the game i
 
         scoreIndices[nGames] = -1; // The last is a dummy element so that the first, second and third indices start at a negative value
+        
         // Indices of the best, second best and third best games (they start at score -1)
-        int first = nGames, second = nGames, third = nGames;
+                
+        TriviaGame first = new TriviaGame(), second = new TriviaGame(), third = new TriviaGame();
+        
+        // Array where the first, second and third place games will be stored before being transfered to the final top 3 array
+        ArrayList<TriviaGame> tempArray = new ArrayList<>();
 
         // Iterates through every game
         for(int i = 0; i < nGames; i++){
-            // Stores the score of the game i in the scoreIndices array
-            scoreIndices[i] = (games.get(i)).calculateTotalScore();
-
+            // Current game being compared
+            TriviaGame currGame = games.get(i);
             // If game i's score is larger or equal than the score of the best game so far, pushes every game on the top 3 one step down
-            if (scoreIndices[i] >= scoreIndices[first]){
+            if (currGame.calculateTotalScore() >= first.calculateTotalScore()){
                 third = second;
                 second = first; 
-                first = i;
+                first = currGame;
             }
 
             // Else if game i's score is larger or equal than the score of the second best game so far, pushes the games on the spots 2 and 3 one step down
-            else if(scoreIndices[i] >= scoreIndices[second]){
+            else if(currGame.calculateTotalScore() >= second.calculateTotalScore()){
                 third = second;
-                second = i;
+                second = currGame;
             }
 
             // Else if game i's score is larger or equal than the score of the third best game so far, pushes the third best game one spot down
-            else if(scoreIndices[i] >= scoreIndices[third]){
-                third = i;
+            else if(currGame.calculateTotalScore() >= third.calculateTotalScore()){
+                third = currGame;
             }
         } 
 
 
+        tempArray.add(first);
+        tempArray.add(second);
+        tempArray.add(third);
         ArrayList<TriviaGame> topGames = new ArrayList<>();
         // Iterates through the top 3 indices (if the indice is equal to nGames, it means that the indice wasn't set)
-        for(int i: new int[] {first, second, third}){
-            // If the indice was set, add it to the top games ArrayList
-            if(i != nGames){
-                topGames.add(games.get(i));
+        // If the indice was set, add it to the top games ArrayList
+        for(TriviaGame i: tempArray){
+            if(i.calculateTotalScore() != -1){
+                topGames.add(i);
             }
         }
 
@@ -262,10 +269,10 @@ public class FileManager {
             while(line != null){
                 String questionText = br.readLine();; //Reads a question's text
                 /*
-                    * Reads the category type.
-                    * & - Arts
-                    * $ - Science 
-                    * @ - Sports
+                * Reads the category type.
+                * & - Arts
+                * $ - Science 
+                * @ - Sports
                 */
                 String categoryStr = br.readLine(); 
                 String questionDetails = br.readLine();

@@ -36,7 +36,7 @@ public class Window extends JFrame{
     */
     public Window(){
     this.setTitle("POO Trivia");
-    this.setSize(800, 600);
+    this.setSize(800, 650);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -48,7 +48,7 @@ public class Window extends JFrame{
         clearFrame();
         // Image Panel
         try{
-            BufferedImage logo = ImageIO.read(new File("gamefiles" + File.separator + "logo.png"));
+            BufferedImage logo = ImageIO.read(new File("gamefiles" + File.separator + "logo.png")); // File.separator is used to ensure compatibility across diferent operating systems
             JPanel imagePanel = new JPanel(){
                 @Override
                 protected void paintComponent(Graphics g){
@@ -58,7 +58,6 @@ public class Window extends JFrame{
             };
             imagePanel.setBackground(Color.BLACK);
             mainPanel.add(imagePanel, BorderLayout.CENTER);
-
         }
         catch(IOException e){
             System.out.println("Couldn't read the game's logo");
@@ -140,12 +139,12 @@ public class Window extends JFrame{
         mainPanel.add(secondayPanel, BorderLayout.CENTER);
         this.add(mainPanel);
         this.setVisible(true);
-        }
+    }
 
-        /**
-         * Method used to display the current question being asked as well as it's options
-        */
-        public void loadQuestion(){
+    /**
+     * Method used to display the current question being asked as well as it's options
+    */
+    public void loadQuestion(){
         Question currQuestion = game.askedQuestions.get(gameStage);
         if(gameStage < 2){
             currQuestion.setEasyMode(3);    
@@ -160,15 +159,15 @@ public class Window extends JFrame{
         mainPanel.setBackground(Color.BLACK);
 
         // Label 
-        CustomLabel questionText = new CustomLabel("<html><center> For " + currQuestion.getScoreValue() + " points!!<br>" + currQuestion.getText() + "</center></html>", 30);
+        CustomLabel questionText = new CustomLabel("<html><center> For " + currQuestion.getScoreValue() + " points!!<br>" + currQuestion.getText() + "<br> __ __ __ __ __ __ __ __ __ __ </center></html>", 30);
 
         // Buttons
-        Dimension buttonSize = new Dimension(250, 200);
+        Dimension buttonSize = new Dimension(500, 60);
         ArrayList<Option> optionArray = currQuestion.getOptionArray();
         int nOption = optionArray.size();
         for(int idx = 0; idx < nOption; idx++){
             Option opt = optionArray.get(idx);
-            CustomButton optButton = new CustomButton(opt.getOptionText(), 15, buttonSize);
+            CustomButton optButton = new CustomButton(opt.getOptionText(), 20, buttonSize);
             
             optButton.addActionListener(new ActionListener() {
                 @Override
@@ -184,15 +183,15 @@ public class Window extends JFrame{
         mainPanel.add(buttonPanel, BorderLayout.CENTER);
         this.add(mainPanel);
         this.setVisible(true);
-        }
+    }
 
-        /**
-         * Method used to present a screen informing the player if the option they chose is the correct one
-        * as well as a quick fact about the question itself
-        * @param correct Defines if the question was answered correcly
-        * @param quickFact Contains a quick fact about the question
-        */
-        private void afterQuestion(boolean correct, String quickFact){
+    /**
+     * Method used to present a screen informing the player if the option they chose is the correct one
+    * as well as a quick fact about the question itself
+    * @param correct Defines if the question was answered correcly
+    * @param quickFact Contains a quick fact about the question
+    */
+    private void afterQuestion(boolean correct, String quickFact){
         gameStage += 1; 
         clearFrame();
 

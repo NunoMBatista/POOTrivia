@@ -52,6 +52,9 @@ public class TriviaGame implements Serializable{
      * @return The sum of every question's score values after the category boosts
      */
     protected int calculateTotalScore(){
+        if(askedQuestions.isEmpty()){
+            return -1;
+        }
         int totalScore = 0; 
         for(int idx = 0; idx < 5; idx++){
             if(this.correctIndices[idx] == true){
